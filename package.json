@@ -1,7 +1,7 @@
 {
   "name": "@man/custom-editor-widget",
-  "version": "0.1.0-rc.1",
-  "description": "",
+  "version": "0.1.0-rc.2",
+  "description": "WYSIWYG-Editor-Widget: formatierter Fließtext auf Basis von Plate.",
   "author": "",
   "license": "ISC",
   "staffbase": {

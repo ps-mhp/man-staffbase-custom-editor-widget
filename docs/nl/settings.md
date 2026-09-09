@@ -1,12 +1,22 @@
 # Instellingen
 
-TODO: Vermeld elke instelling in het configuratiemenu, met de exacte
-Namen uit de dialoog, wat het doet, welke waarde vooraf is ingesteld, en — 
-indien relevant — welke waarden zijn toegestaan. 
+De widget heeft precies één instelling — de rest gebeurt in de editor. 
 
 | Setting | Beschrijving |
 | --- | --- |
-| _(naam)_ | _(beschrijving)_ |
+| Inhoud | De geformatteerde tekst. Onderhouden via de **Inhoud bewerken**-knop in de editor, niet getypt als tekst. |
 
-TODO: Als de instellingen van elkaar afhangen (bijvoorbeeld het veld werkt maar in één van de twee
-bepaalde modus), zeg dat hier expliciet.
+## Wat de redacteur kan doen
+
+| Gereedschap | Impact |
+| --- | --- |
+| Paragraafformaat | Doorlopende tekst, kop 1-3, citatietekens — geldt voor de alinea op het schrijfteken. |
+| F / K / U / S / ''<!----> | Vetgedrukt, cursief, onderstreept, doorstrepen, code — geldt voor de geselecteerde tekst. |
+| Lijst / 1e lijst | Lijst met stippen of cijfers, inspringbaar met tab. |
+| Uitlijning | Links-uitgelijnd, gecentreerd, rechts-uitgelijnd, uitgelijnd — geldt voor de alinea op het schrijfteken. |
+| Referentie / Loskoppelen Referentie | Zet of verwijdert een referentie op de geselecteerde tekst. |
+| Delingslijn | Voegt een horizontale lijn in. |
+
+De uitstraling en kleuren komen van het MAN-ontwerp en kunnen dat bewust niet zijn
+Individueel opgesteld: een kop ziet er overal hetzelfde uit, ongeacht de
+van wie het schreef.

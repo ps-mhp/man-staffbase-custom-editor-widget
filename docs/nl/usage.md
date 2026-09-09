@@ -1,22 +1,40 @@
 # Stap voor stap
 
-TODO: Beschrijf elke taak als een genummerde lijst (ol) — in zijn geheel, zonder
-Voorkennis, zodat het zonder vragen kan worden uitgevoerd. Vereisten
-(bijv. kolomindeling, bestaande inhoud) zijn opgenomen in de eerste
-Stap. 
+## Schrijf tekst
 
-## Zet de basiszaak op
+1. Voeg de widget in op de pagina. Het configuratiedialoog opent, en
+   De editor verschijnt onmiddellijk als een groot venster. 
+2. Schrijf tekst. De editor gedraagt zich als een tekstverwerker: 
+   Enter start een nieuwe alinea, Shift+Enter start een nieuwe regel
+   in dezelfde alinea. 
+3. Selecteer de **alineastijl** linksboven — hoofdtekst, kop 1 tot 3
+   of citaat. Het geldt voor de alinea waarin het schrijfteken voorkomt. 
+4. Selecteer tekst en maak deze vetgedrukt over **F**, **K**, **U**, **S** of **<!---->**, 
+   cursief, onderstreept, doorstrepen, of als code markeer. 
+   Snelkoppelingen: Ctrl+B, Ctrl+I, Ctrl+U. 
+5. **Opslaan** rechtsboven. Daarna sluit het venster; via **Content
+   Edit** Kom terug. 
+6. Bevestig het configuratiedialoog zoals gewoonlijk en open de pagina
+   . 
 
-1. TODO: Plaats widget. 
-2. TODO: Vul de vereiste velden in — met exacte veldnamen uit de dialoog. 
-3. TODO: Opslaan en controleren in de preview. 
+## Maak een opsomminglijst
 
-## Verander daarna
+Zet het penstrep in de alinea en **Lijst** (punten) of **Eerste lijst** 
+(Cijfers). Enter-toets maakt het volgende punt aan, tab verplaatst
+één komma één niveau, Shift+Tab weer uit. Twee keer zoveel
+Enter sluit de lijst. 
 
-1. TODO
-2. TODO
+## Referentie
 
-## Als iets niet werkt
+1. Selecteer de tekst die als referentie dient. 
+2. Druk op **Referentie**. Voer het adres in — compleet met 'https://'. 
+3. **Invoegen**. 
 
-1. TODO: Eerste test. 
-2. TODO: Ontwijkende route.
+Om te verwijderen, plaats je het schrijfteken in de referentie en **Link loskoppelen** 
+. 
+
+## Als iets niet gered is
+
+Zolang niet-opgeslagen wijzigingen open zijn, **Niet opgeslagen** in
+werkbalk. Als je vervolgens het venster sluit, wordt je gevraagd of de
+veranderingen moeten worden verworpen.

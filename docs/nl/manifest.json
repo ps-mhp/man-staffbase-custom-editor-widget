@@ -1,7 +1,7 @@
 {
-  "title": "Aangepaste Editor Widget",
-  "summary": "TODO: Eén zin over wat deze widget doet voor redacteuren.",
-  "icon": "🧩",
+  "title": "Redacteur",
+  "summary": "Opgemaakte hoofdtekst — koppen, lijsten, referenties — in een editor die laat zien hoe het eruitziet op de pagina.",
+  "icon": "📝",
   "pages": [
     {
       "id": "overview",

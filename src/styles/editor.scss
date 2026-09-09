@@ -1,0 +1,576 @@
+// Copyright 2026, MHP Management und IT-Beratung GmbH and contributors.
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//     http://www.apache.org/licenses/LICENSE-2.0
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// Der Editor im Konfigurationsdialog: eine schmale Symbolleiste über einer
+// durchgehenden Schreibfläche.
+//
+// Die Leiste bleibt bewusst zurückhaltend — randlose Knöpfe, die erst unter
+// dem Zeiger eine Fläche bekommen. Was ins Auge fallen soll, ist der Text, und
+// zwölf umrandete Kästchen nebeneinander lenken davon ab.
+//
+// Die Werte kommen aus `@shared/stylings/editor-chrome` und damit ausdrücklich
+// **nicht** aus der Markenpalette: diese Flächen sieht nur die Redaktion im
+// Staffbase-Dialog. Die Schreibfläche selbst ist die Ausnahme — sie zeigt die
+// spätere Seite und bezieht ihre Typografie deshalb aus `rich-content.scss`,
+// also aus den MAN-Tokens.
+
+@use "@shared/stylings/editor-chrome" as *;
+
+// Die MAN-Schriften für die Schreibfläche.
+//
+// Auf der veröffentlichten Seite liefert sie das Tenant-Stylesheet; im
+// Konfigurationsdialog von Staffbase ist es nicht geladen, und die Redaktion
+// sähe dort Arial, während die Seite später MANEurope zeigt. Genau das soll ein
+// WYSIWYG-Editor nicht.
+//
+// Sie stehen deshalb hier und nicht in `rich-content.scss`: dieses Stylesheet
+// liegt im nachgeladenen Chunk und wird nur geöffnet, wenn jemand den Dialog
+// öffnet. In der Leseansicht käme dieselbe Einbettung auf jeder Seite an, auf
+// der das Tenant-Stylesheet die Schrift ohnehin schon mitbringt.
+//
+// `.woff2` wird von Webpack als Data-URI eingebettet (siehe `webpack.common.ts`)
+// — ein relativer `url()` zielte auf die Wirtsseite, nicht auf das CDN.
+@font-face {
+  font-family: "MANEurope Condensed Bold";
+  src: url("@shared/fonts/maneuropecondensed-bold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  // Bis die Schrift da ist, steht der Text im Ersatzzeichensatz statt unsichtbar.
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MANEurope Light";
+  src: url("@shared/fonts/maneurope-light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+.custom-editor {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  background: $surface;
+  color: $text;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  // Die Werkzeugleiste steht im Konfigurationsdialog von Staffbase, also in
+  // fremdem CSS. Dessen Formularregeln greifen Knöpfe und Auswahllisten mit
+  // höherer Spezifität als eine Klasse an und machen sie zu vollbreiten
+  // Blöcken — die Leiste bricht dann in eine Spalte auseinander. Bis zum
+  // Rückbau hat die Primitiven-Ebene das abgefangen; da sie fort ist, setzt
+  // dieses Stylesheet die Anordnung selbst durch. `!important` ist hier kein
+  // Kurzschluss, sondern die einzige Ebene, die über einer fremden ID- oder
+  // Mehrfachklassenregel liegt.
+  &__bar {
+    display: flex !important;
+    // Kein Umbruch: die Werkzeuge laufen in der Spur waagerecht über. Bräche
+    // die Leiste stattdessen um, verschöben sich alle Werkzeuge, sobald ein
+    // Zustand die Zeile länger macht.
+    flex-flow: row nowrap;
+    align-items: stretch;
+    padding: 0;
+    border-bottom: 1px solid $border;
+    background: $surface-header;
+  }
+
+  // Die beiden festen Enden der Leiste. Sie stehen außerhalb der Spur, laufen
+  // also nicht mit ihr aus dem Bild.
+  &__bar-lead,
+  &__bar-trail {
+    display: flex !important;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    background: $surface-header;
+  }
+
+  &__bar-lead {
+    border-right: 1px solid $border;
+  }
+
+  &__bar-trail {
+    border-left: 1px solid $border;
+  }
+
+  // Die Spur nimmt, was die festen Enden übrig lassen. `min-width: 0` ist die
+  // Bedingung dafür, dass sie überhaupt schmaler werden darf als ihr Inhalt —
+  // ohne sie schöbe der Werkzeugsatz den Dialog auseinander, statt zu laufen.
+  &__tools {
+    position: relative;
+    flex: 1 1 auto !important;
+    min-width: 0;
+    background: $surface;
+  }
+
+  &__track {
+    display: flex !important;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 2px;
+    padding: 6px 8px;
+    overflow-x: auto;
+    // Der Überlauf senkrecht bleibt sichtbar wäre falsch — `auto` waagerecht
+    // erzwingt ohnehin einen Beschnitt nach oben und unten. Deshalb liegen
+    // Hinweis und Farbfeld am Fenster statt am Knopf.
+    overflow-y: hidden;
+    // Die eigene Bildlaufleiste würde die Werkzeuge nach oben drücken und ist
+    // hier überflüssig: die Pfeile zeigen den Überlauf deutlicher an.
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    // Jedes Bedienelement behält seine Eigenbreite und bleibt in der Zeile.
+    > * {
+      flex: 0 0 auto;
+      width: auto !important;
+      max-width: none !important;
+      margin: 0 !important;
+      float: none !important;
+    }
+  }
+
+  // Der Pfeil an einem Ende der Spur, hinterlegt mit einem Verlauf: erst der
+  // weiche Rand macht auf den ersten Blick klar, dass der Text dort nicht
+  // aufhört, sondern weitergeht.
+  &__nudge {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    display: flex !important;
+    align-items: center;
+    width: 40px !important;
+    padding: 0;
+    border: 0;
+    color: $text-muted-icon;
+    cursor: pointer;
+
+    &:hover {
+      color: $text;
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: $focus-ring;
+    }
+
+    &--start {
+      left: 0;
+      justify-content: flex-start;
+      padding-left: 2px;
+      background: linear-gradient(to right, $surface 60%, rgba(255, 255, 255, 0));
+    }
+
+    &--end {
+      right: 0;
+      justify-content: flex-end;
+      padding-right: 2px;
+      background: linear-gradient(to left, $surface 60%, rgba(255, 255, 255, 0));
+    }
+  }
+
+  // Zusammengehörige Werkzeuge rücken enger zusammen als die Gruppen
+  // untereinander — das ersetzt die Hälfte der Trennstriche.
+  &__group {
+    display: flex !important;
+    align-items: center;
+    gap: 1px;
+  }
+
+  &__divider {
+    width: 1px;
+    height: 20px;
+    margin: 0 6px !important;
+    background: $border-soft;
+  }
+
+  // Der Hinweis zu einem Werkzeug. Er liegt am Fenster (`fixed`), weil die
+  // Werkzeugspur alles beschneidet, was unter ihre Kante reicht — und über
+  // allem, weil der Konfigurationsdialog von Staffbase selbst schon hoch
+  // gestapelt ist.
+  &__tip {
+    position: fixed;
+    z-index: 2147483647;
+    max-width: 260px;
+    padding: 5px 8px;
+    border-radius: $radius-small;
+    background: $text-strong;
+    color: #fff;
+    font-size: 12px;
+    line-height: 1.35;
+    white-space: nowrap;
+    // Der Hinweis ist Auskunft, kein Ziel: Zeigerereignisse gehören dem Knopf
+    // darunter, sonst verlöre er beim Erscheinen sofort wieder den Zeiger.
+    pointer-events: none;
+    // Die gemessene Stelle ist die Mitte des Knopfes.
+    transform: translateX(-50%);
+    box-shadow: $shadow-menu;
+  }
+
+  &__btn {
+    display: inline-flex !important;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    height: $control-height-sm;
+    padding: 0 10px;
+    border: 1px solid transparent;
+    border-radius: $radius-small;
+    background: transparent;
+    color: $text;
+    font: inherit;
+    font-size: 13px;
+    cursor: pointer;
+    transition:
+      background $transition,
+      border-color $transition,
+      color $transition;
+
+    &:hover:not(:disabled) {
+      background: $surface-hover;
+    }
+
+    &:active:not(:disabled) {
+      background: $surface-pressed;
+    }
+
+    &:focus-visible {
+      outline: none;
+      border-color: $focus-border;
+      box-shadow: $focus-ring;
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: default;
+    }
+
+    // Gedrückt heißt: die Auszeichnung liegt an der Schreibmarke an.
+    &[aria-pressed="true"] {
+      background: $accent-surface;
+      color: $accent-text;
+    }
+
+    // Ein Symbolknopf ist quadratisch; die Polsterung der Textknöpfe würde ihn
+    // in die Breite ziehen.
+    &--icon {
+      width: $control-height-sm;
+      padding: 0;
+    }
+
+    // Der Knopf einer Farbwahl trägt das Symbol über einem Balken im gewählten
+    // Ton; beides zusammen braucht eine senkrechte Anordnung.
+    &--swatch {
+      flex-direction: column;
+      gap: 1px;
+      padding-top: 2px;
+    }
+
+    &--primary {
+      background: $accent;
+      border-color: $accent;
+      color: $surface;
+
+      &:hover:not(:disabled) {
+        background: $accent-strong;
+        border-color: $accent-strong;
+      }
+
+      &:active:not(:disabled) {
+        background: $accent-stronger;
+        border-color: $accent-stronger;
+      }
+    }
+
+    &--secondary {
+      background: $surface;
+      border-color: $border-input;
+
+      &:hover:not(:disabled) {
+        background: $surface-hover;
+      }
+    }
+  }
+
+  // Der Farbbalken unter dem Symbol. Der karierte Grund zeigt an, wenn keine
+  // Farbe gesetzt ist — ein leerer weißer Balken wäre von Weiß nicht zu
+  // unterscheiden.
+  &__swatch {
+    width: 16px;
+    height: 3px;
+    border-radius: 2px;
+    background-image:
+      linear-gradient(45deg, $border 25%, transparent 25%),
+      linear-gradient(-45deg, $border 25%, transparent 25%);
+    background-size: 4px 4px;
+  }
+
+  // Das aufgeklappte Feld der Farbwahl.
+  &__palette {
+    // Am Fenster statt am Knopf: die Werkzeugspur beschneidet ihren Überlauf,
+    // ein Feld unterhalb des Knopfes wäre darin abgeschnitten. Die Stelle
+    // liefert die Komponente als Stil mit.
+    position: fixed;
+    z-index: 2147483646;
+    display: grid;
+    grid-template-columns: repeat(6, 20px);
+    gap: 5px;
+    padding: 8px;
+    border: 1px solid $border-menu;
+    border-radius: $radius-menu;
+    background: $surface;
+    box-shadow: $shadow-menu;
+  }
+
+  &__chip {
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    border: 1px solid $border;
+    border-radius: $radius-small;
+    cursor: pointer;
+
+    &:hover {
+      // Hebt das Feld unter dem Zeiger heraus, ohne seine Farbe zu verfälschen.
+      box-shadow: 0 0 0 2px $accent-border;
+    }
+  }
+
+  &__palette-reset {
+    grid-column: 1 / -1;
+    height: $control-height-sm;
+    margin-top: 2px;
+    border: 1px solid $border-input;
+    border-radius: $radius-small;
+    background: $surface;
+    color: $text;
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+
+    &:hover {
+      background: $surface-hover;
+    }
+  }
+
+  // Der Stufenwähler der Schriftgröße rückt seine drei Teile zusammen.
+  &__stepper {
+    gap: 0;
+  }
+
+  // Speichern ist kein Werkzeug, sondern die Entscheidung über das Ergebnis.
+  // Es steht deshalb kräftiger da als die Symbole daneben.
+  &__bar-lead &__btn {
+    color: $accent-text;
+
+    &:hover:not(:disabled) {
+      background: $accent-surface;
+    }
+  }
+
+  // Der Punkt sagt, dass noch etwas aussteht. Er sitzt in der Ecke des Knopfes
+  // und ändert dessen Maße nicht — sonst rückte die halbe Leiste, sobald der
+  // erste Buchstabe fällt.
+  &__btn--flagged {
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: $accent;
+    }
+  }
+
+  // Ein Knopf, dessen Symbol aus Buchstaben besteht.
+  &__glyph {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: lowercase;
+  }
+
+  &__icon {
+    width: 17px;
+    height: 17px;
+    // Die Strichbreite der Symbole ist auf 24 Einheiten gezeichnet; verkleinert
+    // wirkte sie zu fett, deshalb hier zurückgenommen.
+    stroke-width: 1.8;
+  }
+
+  // Die Auswahlliste: der Systempfeil weicht einem eigenen, damit sie neben den
+  // Symbolknöpfen nicht wie ein Formularfeld aus der Reihe fällt.
+  &__picker {
+    position: relative;
+    display: inline-flex !important;
+    align-items: center;
+  }
+
+  &__picker-arrow {
+    position: absolute;
+    right: 6px;
+    display: inline-flex;
+    color: $text-muted-icon;
+    // Der Pfeil ist Dekoration: Klicks gehören der Liste darunter.
+    pointer-events: none;
+
+    .custom-editor__icon {
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  &__select {
+    box-sizing: border-box;
+    height: $control-height-sm;
+    min-width: 132px;
+    padding: 0 24px 0 8px;
+    border: 1px solid transparent;
+    border-radius: $radius-small;
+    background: transparent;
+    color: $text;
+    font: inherit;
+    font-size: 13px;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+
+    &:hover {
+      background: $surface-hover;
+    }
+
+    &:focus-visible {
+      outline: none;
+      border-color: $focus-border;
+      box-shadow: $focus-ring;
+    }
+
+    // Die Schriftgröße ist eine Zahl und braucht keine Listenbreite; ihr Pfeil
+    // entfällt, weil die Knöpfe daneben schon die Stufen bedienen.
+    &--size {
+      min-width: 46px;
+      padding: 0 4px;
+      text-align: center;
+    }
+  }
+
+  // Die Schreibfläche. Kein abgesetztes Blatt auf grauem Grund: der Dialog ist
+  // schon der Rahmen, ein zweiter darin verkleinert nur die Fläche, auf die es
+  // ankommt.
+  &__scroll {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+    background: $surface;
+  }
+
+  // Die Schreibfläche nimmt die volle Breite des Dialogs: das Widget steht
+  // später auch nicht in einer festen Spalte, sondern so breit, wie die Seite
+  // es lässt. Der großzügige Fußraum sorgt dafür, dass die letzte Zeile beim
+  // Schreiben nicht am unteren Rand klebt.
+  &__sheet {
+    padding: 24px 24px 240px;
+  }
+
+  &__editable {
+    min-height: 240px;
+    outline: none;
+  }
+
+  // Plates Platzhalter hängt als Attribut am leeren Absatz.
+  &__editable [data-slate-placeholder="true"] {
+    color: $text-muted;
+    opacity: 1 !important;
+  }
+
+  &__loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: $text-muted;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 14px;
+  }
+
+  // Der Verweis-Dialog. Eigene Hülle statt einer Primitive: die Ebene, die eine
+  // gestellt hat, gibt es nicht mehr, und ein Dialog mit zwei Feldern trägt
+  // keine geteilte Abstraktion.
+  &__overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2147483000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(16, 24, 40, 0.45);
+  }
+
+  &__dialog {
+    width: 380px;
+    max-width: calc(100vw - 32px);
+    padding: 20px;
+    border-radius: $radius-panel;
+    background: $surface;
+    box-shadow: $shadow-dialog;
+  }
+
+  &__dialog-title {
+    margin: 0 0 16px;
+    color: $text-strong;
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  &__input {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    height: $control-height;
+    margin-bottom: 10px;
+    padding: 0 8px;
+    border: 1px solid $border-input;
+    border-radius: $radius-input;
+    background: $surface;
+    color: $text;
+    font: inherit;
+    font-size: 13px;
+
+    &:focus-visible {
+      outline: none;
+      border-color: $focus-border;
+      box-shadow: $focus-ring;
+    }
+
+    // Ein eigener Ton statt eines geteilten Tokens: die Editor-Palette kennt
+    // keinen Fehlerzustand, und einen einzuführen, hieße ihn überall zu haben.
+    &--invalid {
+      border-color: #d64545;
+    }
+  }
+
+  &__dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 16px;
+  }
+}

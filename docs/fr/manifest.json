@@ -1,7 +1,7 @@
 {
-  "title": "Widget éditeur personnalisé",
-  "summary": "TODO : Une phrase sur ce que ce widget apporte aux éditeurs.",
-  "icon": "🧩",
+  "title": "Rédacteur en chef",
+  "summary": "Texte du corps formaté — titres, listes, références — dans un éditeur qui montre à quoi il ressemble sur la page.",
+  "icon": "📝",
   "pages": [
     {
       "id": "overview",

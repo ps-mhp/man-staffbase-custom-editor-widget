@@ -1,22 +1,40 @@
 # Krok po kroku
 
-TODO: Opisz każde zadanie jako numerowaną listę (ol) — w całości, bez
-Wiedza wcześniejsza, aby można było to zrobić bez zapytań. Wymagania wstępne
-(np. układ kolumn, istniejąca treść) są zawarte w pierwszym
-Krok. 
+## Pisz tekst
 
-## Ustaw podstawową sprawę
+1. Wstaw widżet na stronę. Otwiera się okno konfiguracyjne i
+   Edytor natychmiast pojawia się jako duże okno. 
+2. Pisz tekst. Edytor działa jak edytor tekstu: 
+   Enter rozpoczyna nowy akapit, Shift+Enter rozpoczyna nową linię
+   w tym samym akapicie. 
+3. Wybierz **styl akapitu** w lewym górnym rogu — tekst główny, nagłówek od 1 do 3
+   lub cytat. Odnosi się do akapitu, w którym pojawia się znak pisania. 
+4. Wybierz tekst i pogrub go nad **F**, **K**, **U**, **S** lub **<!---->**, 
+   kursywa, podkreślone, przekreślone lub oznaczone jako kod. 
+   Skróty: Ctrl+B, Ctrl+I, Ctrl+U. 
+5. **Zapisz** w prawym górnym rogu. Następnie okno się zamyka; via **Treść
+   Edycja** Wróć. 
+6. Potwierdź okno konfiguracyjne jak zwykle i otwórz stronę
+   . 
 
-1. ZADANIE: Umieść widget. 
-2. TODO: Wypełnij wymagane pola — dokładnymi nazwami pól z dialogu. 
-3. TOTO: Zapisz i sprawdź w podglądzie. 
+## Stwórz listę punktowaną
 
-## Zmiana po tym
+Umieść znacznik długopisu w akapicie i **List** (punkty) lub **1. listę** 
+(Liczby). Klawisz Enter tworzy kolejny punkt, tabulator się przesuwa
+jeden punkt jeden poziom, Shift+Tab znowu w górę. Dwa razy więcej
+Enter zamyka listę. 
 
-1. TODO
-2. TODO
+## Przypisy
 
-## Gdy coś nie działa
+1. Wybierz tekst, który ma stać się odniesieniem. 
+2. Naciśnij **Odwołanie**. Wprowadź adres — wraz z 'https://'. 
+3. **Wstaw**. 
 
-1. TODO: Pierwszy test. 
-2. TODO: Droga unikowa.
+Aby usunąć, umieść znak pisania w referencji i **Odłącz link** 
+. 
+
+## Jeśli coś nie zostało uratowane
+
+Dopóki niezapisane zmiany są otwarte, **Nie zapisuje**
+Paska narzędzi. Jeśli następnie zamkniesz okno, zostaniesz zapytany, czy
+zmiany należy odrzucić.

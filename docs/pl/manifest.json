@@ -1,7 +1,7 @@
 {
-  "title": "Widget do niestandardowego edytora",
-  "summary": "TODO: Jedno zdanie o tym, co ten widget robi dla redaktorów.",
-  "icon": "🧩",
+  "title": "Redaktor",
+  "summary": "Sformatowany tekst treści — nagłówki, listy, odniesienia — w edytorze, który pokazuje, jak wygląda na stronie.",
+  "icon": "📝",
   "pages": [
     {
       "id": "overview",

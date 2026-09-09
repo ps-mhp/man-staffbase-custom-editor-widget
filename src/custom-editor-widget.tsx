@@ -11,50 +11,53 @@
  * limitations under the License.
  */
 
-import React from "react";
+import React, { ReactElement, useEffect, useMemo } from "react";
 
-import { isPayload, decodePayload } from "@shared/payload";
+import { useHotStyle } from "@shared/hot-style";
 import { BlockAttributes } from "widget-sdk";
 
-import { describeProbe } from "./probe";
+import { CONTENT_CLASS } from "./content-class";
+import { parseEditorValue, isEmptyValue } from "./editor-value";
+import { RichContent } from "./rich-content";
+import richContentCss from "./styles/rich-content.scss";
 
 export type CustomEditorWidgetProps = BlockAttributes & {
   content?: string;
 };
 
 /**
- * Ansicht des Widgets.
+ * Die veröffentlichte Ansicht.
  *
- * Zeigt vorerst nur den Messbericht: was in der Custom Property abgelegt wurde
- * und was davon zurückkommt. Der eigentliche Inhalt folgt, sobald feststeht,
- * wie viel Platz zur Verfügung steht.
+ * Kein Plate: der Editor wird nur im Konfigurationsdialog nachgeladen (siehe
+ * `editor-modal.tsx`), hier läuft der eigene Renderer über denselben Baum.
+ *
+ * Ein leeres Dokument gibt gar nichts aus. Ein frisch eingefügtes Widget ohne
+ * Inhalt soll auf der Seite keinen leeren Kasten hinterlassen.
  */
-export function CustomEditorWidget({ content = "" }: CustomEditorWidgetProps): React.ReactElement {
-  const decoded = isPayload(content) ? (decodePayload(content) ?? "") : content;
-  const report = describeProbe(decoded);
+export function CustomEditorWidget({ content }: CustomEditorWidgetProps): ReactElement | null {
+  const value = useMemo(() => parseEditorValue(content), [content]);
+  const css = useHotStyle(richContentCss, "custom-editor-widget", "styles/rich-content.scss");
+  const empty = isEmptyValue(value);
 
-  const rows: [string, string][] = [
-    ["Attribut roh", `${content.length.toLocaleString("de-DE")} Zeichen${isPayload(content) ? " (b64:)" : ""}`],
-    ["Nutzinhalt", `${report.received.toLocaleString("de-DE")} Zeichen`],
-    ["Abgeschickt", report.expected === null ? "—" : `${report.expected.toLocaleString("de-DE")} Zeichen`],
-    ["Letzte Marke", report.lastMarker === null ? "—" : report.lastMarker.toLocaleString("de-DE")],
-    ["Abgeschnitten", report.expected === null ? "—" : report.truncated ? "JA" : "nein"],
-    ["Ende", report.tail || "—"],
-  ];
+  // Ein unlesbarer Attributwert sähe für die Leserin genauso aus wie ein
+  // leeres Widget — und für die Redaktion wie verlorene Arbeit. Nach außen
+  // bleibt beides still, aber in der Konsole steht dann, woran es lag: das ist
+  // der Unterschied zwischen „ist nichts drin“ und „kommt nicht durch“.
+  useEffect(() => {
+    if (empty && content !== undefined && content.trim() !== "") {
+      console.warn(
+        "custom-editor-widget: Der gespeicherte Inhalt ließ sich nicht lesen.",
+        `Anfang des Attributs: ${content.slice(0, 120)}`,
+      );
+    }
+  }, [empty, content]);
+
+  if (empty) return null;
 
   return (
-    <div style={{ fontFamily: "monospace", fontSize: 13, border: "1px solid #ccc", borderRadius: 4, padding: 12 }}>
-      <div style={{ fontWeight: "bold", marginBottom: 8 }}>custom-editor-widget — Messbericht</div>
-      <table>
-        <tbody>
-          {rows.map(([label, value]) => (
-            <tr key={label}>
-              <td style={{ paddingRight: 12, opacity: 0.7 }}>{label}</td>
-              <td style={{ wordBreak: "break-all" }}>{value}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+    <>
+      <style>{css}</style>
+      <RichContent value={value} className={CONTENT_CLASS} />
+    </>
   );
 }

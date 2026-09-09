@@ -1,0 +1,204 @@
+// Copyright 2026, MHP Management und IT-Beratung GmbH and contributors.
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//     http://www.apache.org/licenses/LICENSE-2.0
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// Der veröffentlichte Fließtext — und zugleich die Schreibfläche im Editor,
+// damit beim Schreiben steht, was später auf der Seite steht.
+//
+// Die Regeln setzen auf `!important`, weil Wirtsseiten in Staffbase eigene
+// globale Typografie für `p`/`h1`-`h6` mit `!important` durchsetzen; gegen die
+// gewinnt Selektor-Spezifität allein nicht mehr (siehe Kommentar an
+// `man-type`).
+
+@use "@shared/stylings/man-tokens" as *;
+
+.custom-editor-content {
+  @include man-type("body", true);
+
+  color: man(text);
+  overflow-wrap: break-word;
+
+  // Der äußere Rand gehört der Seite, nicht dem Text: ein führender Abstand
+  // oben ließe das Widget von seinem Nachbarn abrücken.
+  > :first-child {
+    margin-top: 0 !important;
+  }
+
+  > :last-child {
+    margin-bottom: 0 !important;
+  }
+
+  p {
+    @include man-type("body", true);
+
+    margin: 0 0 man(space-3) !important;
+  }
+
+  h1 {
+    @include man-type("h2", true);
+
+    margin: man(space-5) 0 man(space-3) !important;
+    color: man(text) !important;
+  }
+
+  h2 {
+    @include man-type("h3", true);
+
+    margin: man(space-5) 0 man(space-2) !important;
+    color: man(text) !important;
+  }
+
+  h3 {
+    @include man-type("h4", true);
+
+    margin: man(space-4) 0 man(space-2) !important;
+    color: man(text) !important;
+  }
+
+  // Die kleinen Überschriften teilen sich die Rolle der vierten Stufe: MAN
+  // führt darunter keine eigene Typografie mehr, und drei fast gleich große
+  // Schriftgrade nebeneinander unterschieden sich ohnehin nur auf dem Papier.
+  h4,
+  h5,
+  h6 {
+    @include man-type("h4", true);
+
+    margin: man(space-4) 0 man(space-2) !important;
+    color: man(text) !important;
+  }
+
+  h5 {
+    font-size: 1rem !important;
+  }
+
+  h6 {
+    font-size: 0.9375rem !important;
+    color: man(text-muted) !important;
+  }
+
+  // Zitat: eine Kante links statt einer Fläche — MAN setzt Betonung über
+  // Linien, nicht über Farbflächen.
+  blockquote {
+    margin: man(space-4) 0 !important;
+    padding: 0 0 0 man(space-4) !important;
+    border-left: man(border-width-strong) solid man("red") !important;
+    color: man(text-muted) !important;
+    font-style: normal !important;
+  }
+
+  ul,
+  ol {
+    margin: 0 0 man(space-3) !important;
+    padding-left: man(space-5) !important;
+  }
+
+  li {
+    margin: 0 0 man(space-1) !important;
+  }
+
+  // Der Inhaltsknoten eines Listenpunkts ist ein `div`; ohne diese Regel
+  // brächte er den Absatzabstand eines Blocks in die Liste.
+  li > div {
+    margin: 0 !important;
+  }
+
+  a {
+    color: man(link);
+    text-decoration: underline;
+
+    &:hover {
+      color: man(link-hover);
+    }
+  }
+
+  code {
+    padding: 0 4px;
+    border-radius: man(radius);
+    background: man(surface-sunken);
+    font-family: ui-monospace, "SFMono-Regular", "Menlo", monospace;
+    font-size: 0.9em;
+  }
+
+  // Ein Codeblock bewahrt Umbrüche und Leerzeichen; die Zeilen darin sind
+  // `div`, deshalb braucht `pre` selbst die Fläche und nicht ein `code` darin.
+  pre {
+    margin: man(space-4) 0 !important;
+    padding: man(space-3) man(space-4) !important;
+    overflow-x: auto;
+    border-left: man(border-width-strong) solid man(border) !important;
+    background: man(surface-sunken) !important;
+    color: man(text) !important;
+    font-family: ui-monospace, "SFMono-Regular", "Menlo", monospace !important;
+    font-size: 0.9em !important;
+    line-height: 1.5 !important;
+    white-space: pre-wrap;
+  }
+
+  // Innerhalb des Blocks trägt schon `pre` die Fläche; ein zweiter Grund pro
+  // Zeile ergäbe Kästen im Kasten.
+  pre code {
+    padding: 0;
+    background: none;
+  }
+
+  // Die Hervorhebung nimmt das Warngelb der Palette: es ist der einzige helle
+  // Ton der Marke, hinter dem Fließtext noch lesbar bleibt.
+  // Die Ausnahme von der Versal-Regel der Überschriften — für Eigennamen, die
+  // klein beginnen („iPhone“, „eTGX“). `onetruck-css` definiert die Klasse
+  // global als `.page .text-lowercase`; diese Kopie sorgt dafür, dass sie auch
+  // ohne geladenes Tenant-Stylesheet wirkt: in der Vorschau, bei einem anderen
+  // Tenant und — vor allem — im Konfigurationsdialog, wo die Redaktion sehen
+  // soll, was später auf der Seite steht.
+  .text-lowercase {
+    text-transform: lowercase !important;
+  }
+
+  mark {
+    padding: 0 2px;
+    background: man("warning");
+    color: man(text);
+  }
+
+  // Eine Taste: der Rahmen macht sie als Beschriftung erkennbar, ohne sie wie
+  // eine Schaltfläche aussehen zu lassen.
+  kbd {
+    padding: 1px 5px;
+    border: man(border-width) solid man(border);
+    border-radius: man(radius);
+    background: man(surface-sunken);
+    font-family: ui-monospace, "SFMono-Regular", "Menlo", monospace;
+    font-size: 0.85em;
+  }
+
+  // Hoch- und Tiefstellung ohne Zeilensprung: `vertical-align` allein zöge die
+  // Zeilenhöhe auf.
+  sup,
+  sub {
+    position: relative;
+    font-size: 0.75em;
+    line-height: 0;
+    vertical-align: baseline;
+  }
+
+  sup {
+    top: -0.5em;
+  }
+
+  sub {
+    bottom: -0.25em;
+  }
+
+  hr {
+    height: 0;
+    margin: man(space-5) 0 !important;
+    border: 0;
+    border-top: man(border-width) solid man(border);
+  }
+}

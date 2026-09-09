@@ -1,7 +1,7 @@
 {
-  "title": "Widget de editor personalizado",
-  "summary": "TODO: Una frase sobre lo que este widget hace por los editores.",
-  "icon": "🧩",
+  "title": "Editor",
+  "summary": "Texto principal formateado — encabezados, listas, referencias — en un editor que muestre cómo queda en la página.",
+  "icon": "📝",
   "pages": [
     {
       "id": "overview",

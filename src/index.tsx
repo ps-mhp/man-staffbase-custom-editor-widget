@@ -13,6 +13,7 @@
 
 import { startWidget } from "@shared/dev-mode/start-widget";
 import { setPublicPathFromBundle } from "@shared/public-path";
+import { getTranslationRegistry } from "@shared/translation/registry";
 
 // Must run before any dynamic `import()`, so that lazily loaded chunks come
 // from the CDN the bundle was served from and not from the hosting page.
@@ -23,7 +24,8 @@ import ReactDOM from "react-dom/client";
 import { BlockFactory, BlockDefinition, ExternalBlockDefinition, BaseBlock } from "widget-sdk";
 import { configurationSchema, uiSchema } from "./configuration-schema";
 import { CustomEditorWidget, CustomEditorWidgetProps } from "./custom-editor-widget";
-import { startProbeInjector } from "./probe-injector";
+import { startEditorInjector } from "./editor-injector";
+import { customEditorTranslationProvider } from "./translation-provider";
 import icon from "../resources/custom-editor-widget.svg";
 import pkg from "../package.json";
 
@@ -33,7 +35,7 @@ const widgetAttributes: string[] = ["content"];
 let stopInjector: (() => void) | null = null;
 
 /** Exported so tests can dispose of the `MutationObserver` on teardown. */
-export function stopProbeInjector(): void {
+export function stopEditorInjector(): void {
   stopInjector?.();
   stopInjector = null;
 }
@@ -78,11 +80,21 @@ const externalBlockDefinition: ExternalBlockDefinition = {
   version: pkg.version,
 };
 
+/**
+ * Beim Laden des Moduls angemeldet. Die Registrierung teilen sich alle
+ * Widget-Bündel und hängt ihren `fetch`-Umweg nur einmal ein; wer zuerst lädt,
+ * tut es, der Rest meldet sich nur an. Auf einer veröffentlichten Seite wird
+ * die Übersetzung nie aufgerufen, dort kostet das also nichts.
+ */
+export const stopTranslationProvider = getTranslationRegistry().register(
+  customEditorTranslationProvider,
+);
+
 void startWidget({
   name: "custom-editor-widget",
   version: pkg.version,
   register: () => {
-    stopInjector = startProbeInjector();
+    stopInjector = startEditorInjector();
     window.defineBlock(externalBlockDefinition);
   },
 });
