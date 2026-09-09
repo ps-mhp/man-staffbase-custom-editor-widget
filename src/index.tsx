@@ -1,5 +1,5 @@
 /*!
- * Copyright 2026, Staffbase SE and contributors.
+ * Copyright 2026, MHP Management und IT-Beratung GmbH and contributors.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -11,6 +11,7 @@
  * limitations under the License.
  */
 
+import { startWidget } from "@shared/dev-mode/start-widget";
 import { setPublicPathFromBundle } from "@shared/public-path";
 
 // Must run before any dynamic `import()`, so that lazily loaded chunks come
@@ -21,19 +22,33 @@ import ReactDOM from "react-dom/client";
 
 import { BlockFactory, BlockDefinition, ExternalBlockDefinition, BaseBlock } from "widget-sdk";
 import { configurationSchema, uiSchema } from "./configuration-schema";
+import { CustomEditorWidget, CustomEditorWidgetProps } from "./custom-editor-widget";
+import { startProbeInjector } from "./probe-injector";
 import icon from "../resources/custom-editor-widget.svg";
 import pkg from "../package.json";
 
 /** Attributes handled by the widget; mirrored in the configuration schema. */
-const widgetAttributes: string[] = [];
+const widgetAttributes: string[] = ["content"];
+
+let stopInjector: (() => void) | null = null;
+
+/** Exported so tests can dispose of the `MutationObserver` on teardown. */
+export function stopProbeInjector(): void {
+  stopInjector?.();
+  stopInjector = null;
+}
 
 const factory: BlockFactory = (BaseBlockClass, _widgetApi) => {
   return class CustomEditorWidgetBlock extends BaseBlockClass implements BaseBlock {
     private _root: ReactDOM.Root | null = null;
 
+    private get props(): CustomEditorWidgetProps {
+      return this.parseAttributes<CustomEditorWidgetProps>();
+    }
+
     public renderBlock(container: HTMLElement): void {
       this._root ??= ReactDOM.createRoot(container);
-      this._root.render(<div />);
+      this._root.render(<CustomEditorWidget {...this.props} />);
     }
 
     public static get observedAttributes(): string[] {
@@ -53,7 +68,7 @@ const blockDefinition: BlockDefinition = {
   blockLevel: "block",
   configurationSchema: configurationSchema,
   uiSchema: uiSchema,
-  label: "CustomEditorWidget",
+  label: "Custom Editor Widget",
   iconUrl: icon,
 };
 
@@ -63,4 +78,11 @@ const externalBlockDefinition: ExternalBlockDefinition = {
   version: pkg.version,
 };
 
-window.defineBlock(externalBlockDefinition);
+void startWidget({
+  name: "custom-editor-widget",
+  version: pkg.version,
+  register: () => {
+    stopInjector = startProbeInjector();
+    window.defineBlock(externalBlockDefinition);
+  },
+});

@@ -1,0 +1,27 @@
+{
+  "title": "Widget do niestandardowego edytora",
+  "summary": "TODO: Jedno zdanie o tym, co ten widget robi dla redaktorów.",
+  "icon": "🧩",
+  "pages": [
+    {
+      "id": "overview",
+      "title": "Przegląd",
+      "file": "overview.md"
+    },
+    {
+      "id": "usage",
+      "title": "Krok po kroku",
+      "file": "usage.md"
+    },
+    {
+      "id": "settings",
+      "title": "Ustawienia",
+      "file": "settings.md"
+    },
+    {
+      "id": "faq",
+      "title": "FAQ",
+      "file": "faq.md"
+    }
+  ]
+}

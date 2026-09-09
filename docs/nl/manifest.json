@@ -1,0 +1,27 @@
+{
+  "title": "Aangepaste Editor Widget",
+  "summary": "TODO: Eén zin over wat deze widget doet voor redacteuren.",
+  "icon": "🧩",
+  "pages": [
+    {
+      "id": "overview",
+      "title": "Overzicht",
+      "file": "overview.md"
+    },
+    {
+      "id": "usage",
+      "title": "Stap voor stap",
+      "file": "usage.md"
+    },
+    {
+      "id": "settings",
+      "title": "Instellingen",
+      "file": "settings.md"
+    },
+    {
+      "id": "faq",
+      "title": "FAQ",
+      "file": "faq.md"
+    }
+  ]
+}

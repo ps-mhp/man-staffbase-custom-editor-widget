@@ -1,0 +1,27 @@
+{
+  "title": "Widget de Editor Personalizado",
+  "summary": "TODO: Uma frase sobre o que esse widget faz pelos editores.",
+  "icon": "🧩",
+  "pages": [
+    {
+      "id": "overview",
+      "title": "Visão geral",
+      "file": "overview.md"
+    },
+    {
+      "id": "usage",
+      "title": "Passo a passo",
+      "file": "usage.md"
+    },
+    {
+      "id": "settings",
+      "title": "Configurações",
+      "file": "settings.md"
+    },
+    {
+      "id": "faq",
+      "title": "FAQ",
+      "file": "faq.md"
+    }
+  ]
+}
