@@ -1,0 +1,11 @@
+{
+  "name": "@man/custom-editor-widget",
+  "version": "0.0.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "staffbase": {
+    "element": "custom-editor-widget",
+    "bundle": "dist/custom-editor-widget.js"
+  }
+}
