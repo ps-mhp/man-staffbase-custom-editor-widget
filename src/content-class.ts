@@ -28,7 +28,7 @@ export const CONTENT_CLASS = "custom-editor-content";
  * uppercase` bei `h1`–`h4`). Für Eigennamen, die klein beginnen — „iPhone",
  * „eTGX" —, braucht es eine Ausnahme, und genau die ist diese Klasse.
  *
- * Der Name ist nicht frei gewählt: `onetruck-css` definiert sie global als
+ * Der Name ist nicht frei gewählt: `man-theme` definiert sie global als
  * `.page .text-lowercase`, und `table-widget` erzeugt dieselbe. Ein eigener
  * Name hier hieße, dass dieselbe Ausnahme je nach Widget anders heißt.
  */
