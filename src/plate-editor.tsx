@@ -158,7 +158,8 @@ const mark =
     <PlateLeaf {...props} as={tag} />;
 
 /**
- * Die Ausnahme von der Versal-Regel.
+ * Kleinschreibung für eine Textstelle (früher die Ausnahme von den Versalien
+ * der Überschriften, siehe `LOWERCASE_CLASS`).
  *
  * Sie ist kein eigenes Element, sondern eine Klasse an einer Textstelle — so
  * wie sie auch in der Leseansicht und im `table-widget` entsteht. Das Regelwerk
@@ -287,7 +288,7 @@ const MARK_BUTTONS: Array<{ key: string; icon: ReactElement; title: string }> = 
   {
     key: "lowercase",
     icon: <span className="custom-editor__glyph">aa</span>,
-    title: "Kleinschreibung erzwingen (hebt die Versalien der Überschrift auf)",
+    title: "Kleinschreibung erzwingen",
   },
 ];
 

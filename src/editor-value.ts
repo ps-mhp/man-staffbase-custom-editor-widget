@@ -40,8 +40,9 @@ export const MARKS = [
   "kbd",
   "superscript",
   "subscript",
-  // Hebt die Versal-Regel der MAN-Überschriften für eine Stelle auf; siehe
-  // `LOWERCASE_CLASS` in `content-class.ts`.
+  // Setzt eine Stelle in Kleinbuchstaben (früher die Ausnahme von den
+  // Versalien der MAN-Überschriften); siehe `LOWERCASE_CLASS` in
+  // `content-class.ts`.
   "lowercase",
 ] as const;
 export type Mark = (typeof MARKS)[number];

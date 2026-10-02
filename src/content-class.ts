@@ -21,12 +21,14 @@
 export const CONTENT_CLASS = "custom-editor-content";
 
 /**
- * Die Klasse, die die Versal-Regel der MAN-CI für eine Textstelle aufhebt.
+ * Die Klasse, die eine Textstelle in Kleinbuchstaben setzt.
  *
- * MAN schreibt Überschriften durchgängig in Versalien vor (siehe
- * `$man-type-scale` in `src/shared/stylings/_man-tokens.scss`, `transform:
- * uppercase` bei `h1`–`h4`). Für Eigennamen, die klein beginnen — „iPhone",
- * „eTGX" —, braucht es eine Ausnahme, und genau die ist diese Klasse.
+ * Entstanden ist sie als Ausnahme von den Versalien, die die MAN-CI früher für
+ * Überschriften vorschrieb — für Eigennamen, die klein beginnen („iPhone",
+ * „eTGX"). Craft kennt keine Versalien mehr (`man-type` in
+ * `src/shared/stylings/_man-tokens.scss` setzt `text-transform: none`); die
+ * Klasse bleibt, weil gespeicherte Inhalte sie tragen und eine Wirtsseite
+ * noch Versalien hineintragen kann.
  *
  * Der Name ist nicht frei gewählt: `man-theme` definiert sie global als
  * `.page .text-lowercase`, und `table-widget` erzeugt dieselbe. Ein eigener

@@ -28,7 +28,7 @@
 //
 // Auf der veröffentlichten Seite liefert sie das Tenant-Stylesheet; im
 // Konfigurationsdialog von Staffbase ist es nicht geladen, und die Redaktion
-// sähe dort Arial, während die Seite später MANEurope zeigt. Genau das soll ein
+// sähe dort Arial, während die Seite später Man Europe zeigt. Genau das soll ein
 // WYSIWYG-Editor nicht.
 //
 // Sie stehen deshalb hier und nicht in `rich-content.scss`: dieses Stylesheet
@@ -36,21 +36,38 @@
 // öffnet. In der Leseansicht käme dieselbe Einbettung auf jeder Seite an, auf
 // der das Tenant-Stylesheet die Schrift ohnehin schon mitbringt.
 //
+// Familien, Gewichte und Schnitte wie Craft (man-theme
+// `src/01-foundation/_fonts-app.scss`): „Man Europe“ in 400 und 700 für den
+// Fließtext und seine Fettung, „Man Europe Condensed“ nur in 700 für die
+// Überschriften. Die Namen sind die, die `man("font-body")` und
+// `man("font-head")` nennen.
+//
 // `.woff2` wird von Webpack als Data-URI eingebettet (siehe `webpack.common.ts`)
 // — ein relativer `url()` zielte auf die Wirtsseite, nicht auf das CDN.
 @font-face {
-  font-family: "MANEurope Condensed Bold";
-  src: url("@shared/fonts/maneuropecondensed-bold.woff2") format("woff2");
-  font-weight: 600;
+  font-family: "Man Europe";
+  src: url("@shared/fonts/ManEurope_Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-stretch: normal;
   font-style: normal;
   // Bis die Schrift da ist, steht der Text im Ersatzzeichensatz statt unsichtbar.
   font-display: swap;
 }
 
 @font-face {
-  font-family: "MANEurope Light";
-  src: url("@shared/fonts/maneurope-light.woff2") format("woff2");
-  font-weight: 300;
+  font-family: "Man Europe";
+  src: url("@shared/fonts/ManEurope_Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-stretch: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Man Europe Condensed";
+  src: url("@shared/fonts/ManEuropeCondensed_Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-stretch: condensed;
   font-style: normal;
   font-display: swap;
 }

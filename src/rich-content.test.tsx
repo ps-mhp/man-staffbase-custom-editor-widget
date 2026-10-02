@@ -161,7 +161,7 @@ describe("RichContent — erweiterte Auszeichnungen", () => {
     expect(container.querySelector("sub")).toHaveTextContent("d");
   });
 
-  it("hebt die Versalien einer Überschrift für eine Stelle auf", () => {
+  it("setzt eine Stelle einer Überschrift in Kleinbuchstaben", () => {
     const { container } = render(
       <RichContent
         value={[

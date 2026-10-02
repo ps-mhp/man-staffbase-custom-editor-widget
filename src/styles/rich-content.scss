@@ -17,6 +17,7 @@
 // gewinnt Selektor-Spezifität allein nicht mehr (siehe Kommentar an
 // `man-type`).
 
+@use "sass:map";
 @use "@shared/stylings/man-tokens" as *;
 
 .custom-editor-content {
@@ -74,12 +75,16 @@
     color: man(text) !important;
   }
 
+  // Abgestuft wird nur die Größe: `h5` steht im Grad des Fließtexts, `h6` eine
+  // Craft-Stufe darunter (`body-m`) und gedämpft. Aus der Skala statt als
+  // `rem`: die Wurzelgröße der Wirtsseite schwankt (Staffbase 15px, man-theme
+  // 16px), und der Fließtext ist mit Craft auf 18px gewachsen.
   h5 {
-    font-size: 1rem !important;
+    font-size: map.get($man-type-scale, "body", "size") !important;
   }
 
   h6 {
-    font-size: 0.9375rem !important;
+    font-size: map.get($man-type-scale, "body-m", "size") !important;
     color: man(text-muted) !important;
   }
 
@@ -148,18 +153,22 @@
     background: none;
   }
 
-  // Die Hervorhebung nimmt das Warngelb der Palette: es ist der einzige helle
-  // Ton der Marke, hinter dem Fließtext noch lesbar bleibt.
-  // Die Ausnahme von der Versal-Regel der Überschriften — für Eigennamen, die
-  // klein beginnen („iPhone“, „eTGX“). `man-theme` definiert die Klasse
-  // global als `.page .text-lowercase`; diese Kopie sorgt dafür, dass sie auch
-  // ohne geladenes Tenant-Stylesheet wirkt: in der Vorschau, bei einem anderen
-  // Tenant und — vor allem — im Konfigurationsdialog, wo die Redaktion sehen
-  // soll, was später auf der Seite steht.
+  // Kleinschreibung für eine Textstelle. Eingeführt als Ausnahme von den
+  // Versalien, die die MAN-CI früher für Überschriften vorschrieb; Craft kennt
+  // keine Versalien mehr (`man-type` setzt `text-transform: none`), die Klasse
+  // bleibt für gespeicherte Inhalte und Wirtsseiten, die noch Versalien
+  // hineintragen. `man-theme` definiert sie global als `.page .text-lowercase`;
+  // diese Kopie sorgt dafür, dass sie auch ohne geladenes Tenant-Stylesheet
+  // wirkt: in der Vorschau, bei einem anderen Tenant und — vor allem — im
+  // Konfigurationsdialog, wo die Redaktion sehen soll, was später auf der
+  // Seite steht.
   .text-lowercase {
     text-transform: lowercase !important;
   }
 
+  // Die Hervorhebung nimmt die helle Gelbfläche von Craft (`warning`, yellow-100
+  // #FFEDB0 — dieselbe Fläche wie der gelbe Tag, dort ebenfalls mit Schrift
+  // #303C49): wie ein Textmarker, und der Fließtext bleibt darauf gut lesbar.
   mark {
     padding: 0 2px;
     background: man("warning");
