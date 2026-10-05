@@ -153,19 +153,6 @@
     background: none;
   }
 
-  // Kleinschreibung für eine Textstelle. Eingeführt als Ausnahme von den
-  // Versalien, die die MAN-CI früher für Überschriften vorschrieb; Craft kennt
-  // keine Versalien mehr (`man-type` setzt `text-transform: none`), die Klasse
-  // bleibt für gespeicherte Inhalte und Wirtsseiten, die noch Versalien
-  // hineintragen. `man-theme` definiert sie global als `.page .text-lowercase`;
-  // diese Kopie sorgt dafür, dass sie auch ohne geladenes Tenant-Stylesheet
-  // wirkt: in der Vorschau, bei einem anderen Tenant und — vor allem — im
-  // Konfigurationsdialog, wo die Redaktion sehen soll, was später auf der
-  // Seite steht.
-  .text-lowercase {
-    text-transform: lowercase !important;
-  }
-
   // Die Hervorhebung nimmt die helle Gelbfläche von Craft (`warning`, yellow-100
   // #FFEDB0 — dieselbe Fläche wie der gelbe Tag, dort ebenfalls mit Schrift
   // #303C49): wie ein Textmarker, und der Fließtext bleibt darauf gut lesbar.

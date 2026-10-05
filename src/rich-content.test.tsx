@@ -161,22 +161,31 @@ describe("RichContent — erweiterte Auszeichnungen", () => {
     expect(container.querySelector("sub")).toHaveTextContent("d");
   });
 
-  it("setzt eine Stelle einer Überschrift in Kleinbuchstaben", () => {
-    const { container } = render(
-      <RichContent
-        value={[
-          {
-            type: "h1",
-            children: [
-              { text: "MODELL " },
-              { text: "eTGX", lowercase: true },
-            ],
-          },
-        ]}
-      />,
-    );
+  // Die Kleinschreibung ist entfernt. `man-theme` setzt `.page .text-lowercase`
+  // global mit `!important`; trüge die Leseansicht die Klasse weiter aus,
+  // stünde gespeicherter Text auf der Seite anders da, als er getippt wurde.
+  describe("frühere Kleinschreibung in gespeicherten Inhalten", () => {
+    const stored = [
+      { type: "h1", children: [{ text: "MODELL " }, { text: "eTGX", lowercase: true }] },
+    ];
 
-    expect(container.querySelector(".text-lowercase")).toHaveTextContent("eTGX");
+    it("gibt aus dem gespeicherten Attribut weder Klasse noch Hülle aus", () => {
+      const { container } = render(
+        <CustomEditorWidget contentLanguage="de_DE" content={encodeEditorAttribute(stored as never)} />,
+      );
+
+      const heading = screen.getByRole("heading", { level: 1 });
+      expect(heading.textContent).toBe("MODELL eTGX");
+      expect(container.querySelector(".text-lowercase")).toBeNull();
+      expect(heading.querySelector("span")).toBeNull();
+    });
+
+    it("kennt die Auszeichnung auch beim direkten Rendern nicht mehr", () => {
+      const { container } = render(<RichContent value={stored as never} />);
+
+      expect(container.querySelector("h1")?.textContent).toBe("MODELL eTGX");
+      expect(container.querySelector(".text-lowercase")).toBeNull();
+    });
   });
 
   it("rückt einen eingerückten Block ein", () => {

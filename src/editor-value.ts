@@ -29,7 +29,15 @@
 
 import { encodePayload, decodePayload, isPayload } from "@shared/payload";
 
-/** Auszeichnungen, die eine Textstelle entweder trägt oder nicht. */
+/**
+ * Auszeichnungen, die eine Textstelle entweder trägt oder nicht.
+ *
+ * Die frühere Kleinschreibung (`lowercase`) steht bewusst nicht mehr hier.
+ * Gespeicherte Inhalte können sie noch tragen; `sanitizeNode` lässt sie beim
+ * Lesen fallen, der Text bleibt wie getippt. Wieder aufnehmen hieße, dass die
+ * Leseansicht `text-lowercase` ausgibt — und die setzt `man-theme` global mit
+ * `!important` klein.
+ */
 export const MARKS = [
   "bold",
   "italic",
@@ -40,10 +48,6 @@ export const MARKS = [
   "kbd",
   "superscript",
   "subscript",
-  // Setzt eine Stelle in Kleinbuchstaben (früher die Ausnahme von den
-  // Versalien der MAN-Überschriften); siehe `LOWERCASE_CLASS` in
-  // `content-class.ts`.
-  "lowercase",
 ] as const;
 export type Mark = (typeof MARKS)[number];
 

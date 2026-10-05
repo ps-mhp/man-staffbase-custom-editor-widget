@@ -43,7 +43,6 @@ import {
   PlateContent,
   PlateElement,
   PlateLeaf,
-  createPlatePlugin,
   usePlateEditor,
 } from "platejs/react";
 import type { PlateElementProps, PlateLeafProps, PlateEditor } from "platejs/react";
@@ -127,7 +126,7 @@ import {
   IconUnlink,
 } from "./icons";
 import { EditorValue, MARKS, STYLE_MARKS, TextAlign, isSafeUrl } from "./editor-value";
-import { CONTENT_CLASS, LOWERCASE_CLASS } from "./content-class";
+import { CONTENT_CLASS } from "./content-class";
 import editorCss from "./styles/editor.scss";
 import richContentCss from "./styles/rich-content.scss";
 
@@ -156,23 +155,6 @@ const mark =
   (tag: "strong" | "em" | "u" | "s" | "code" | "mark" | "kbd" | "sup" | "sub") =>
   (props: PlateLeafProps): ReactElement =>
     <PlateLeaf {...props} as={tag} />;
-
-/**
- * Kleinschreibung für eine Textstelle (früher die Ausnahme von den Versalien
- * der Überschriften, siehe `LOWERCASE_CLASS`).
- *
- * Sie ist kein eigenes Element, sondern eine Klasse an einer Textstelle — so
- * wie sie auch in der Leseansicht und im `table-widget` entsteht. Das Regelwerk
- * dazu steht in `styles/rich-content.scss` und gilt hier wie dort, weil die
- * Schreibfläche dieselbe Klasse trägt.
- */
-function LowercaseLeaf(props: PlateLeafProps): ReactElement {
-  return <PlateLeaf {...props} as="span" className={LOWERCASE_CLASS} />;
-}
-
-// Plate kennt die Auszeichnung nur, wenn ein Plugin sie anmeldet; ein Paket
-// dafür gibt es nicht, weil sie aus der MAN-CI stammt und nicht aus Plate.
-const LowercasePlugin = createPlatePlugin({ key: "lowercase", node: { isLeaf: true } });
 
 function LinkElement(props: PlateElementProps): ReactElement {
   const url = (props.element as { url?: string }).url ?? "";
@@ -218,7 +200,6 @@ const COMPONENTS = {
   kbd: mark("kbd"),
   superscript: mark("sup"),
   subscript: mark("sub"),
-  lowercase: LowercaseLeaf,
 };
 
 // Die Einrückung hängt als Zahl am Block. Ohne diese Liste wüsste das Plugin
@@ -246,7 +227,6 @@ const PLUGINS = [
   KbdPlugin,
   SuperscriptPlugin,
   SubscriptPlugin,
-  LowercasePlugin,
   FontColorPlugin,
   FontBackgroundColorPlugin,
   FontSizePlugin,
@@ -283,13 +263,6 @@ const MARK_BUTTONS: Array<{ key: string; icon: ReactElement; title: string }> = 
   { key: "superscript", icon: <IconSuperscript />, title: "Hochgestellt" },
   { key: "subscript", icon: <IconSubscript />, title: "Tiefgestellt" },
   { key: "kbd", icon: <IconKbd />, title: "Taste" },
-  // Kein gezeichnetes Symbol, sondern zwei Kleinbuchstaben: sie zeigen
-  // unmittelbar, was der Knopf bewirkt.
-  {
-    key: "lowercase",
-    icon: <span className="custom-editor__glyph">aa</span>,
-    title: "Kleinschreibung erzwingen",
-  },
 ];
 
 // Die Ausrichtung bekommt statt einer Auswahlliste vier Knöpfe: sie zeigt den
@@ -744,8 +717,8 @@ export default function CustomPlateEditor({
   const toggleMark = (key: string): void =>
     run(() => {
       // Die Auszeichnungen aus den Plate-Paketen bringen einen eigenen
-      // Umschalter mit; die selbst angemeldete (`lowercase`) nicht. Für sie
-      // übernimmt der allgemeine Weg über die Marks.
+      // Umschalter mit; fehlt einer, übernimmt der allgemeine Weg über die
+      // Marks.
       const transforms = editor.tf as unknown as Record<string, { toggle?: () => void } | undefined>;
       const toggle = transforms[key]?.toggle;
       if (typeof toggle === "function") {

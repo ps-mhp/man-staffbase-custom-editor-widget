@@ -19,19 +19,3 @@
  * zöge die Leseansicht Plate ins Bundle.
  */
 export const CONTENT_CLASS = "custom-editor-content";
-
-/**
- * Die Klasse, die eine Textstelle in Kleinbuchstaben setzt.
- *
- * Entstanden ist sie als Ausnahme von den Versalien, die die MAN-CI früher für
- * Überschriften vorschrieb — für Eigennamen, die klein beginnen („iPhone",
- * „eTGX"). Craft kennt keine Versalien mehr (`man-type` in
- * `src/shared/stylings/_man-tokens.scss` setzt `text-transform: none`); die
- * Klasse bleibt, weil gespeicherte Inhalte sie tragen und eine Wirtsseite
- * noch Versalien hineintragen kann.
- *
- * Der Name ist nicht frei gewählt: `man-theme` definiert sie global als
- * `.page .text-lowercase`, und `table-widget` erzeugt dieselbe. Ein eigener
- * Name hier hieße, dass dieselbe Ausnahme je nach Widget anders heißt.
- */
-export const LOWERCASE_CLASS = "text-lowercase";

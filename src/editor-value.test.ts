@@ -194,7 +194,6 @@ describe("Auszeichnungen mit Wert", () => {
       kbd: true,
       superscript: true,
       subscript: true,
-      lowercase: true,
     });
 
     expect(node).toEqual({
@@ -203,8 +202,29 @@ describe("Auszeichnungen mit Wert", () => {
       kbd: true,
       superscript: true,
       subscript: true,
-      lowercase: true,
     });
+  });
+});
+
+describe("frühere Kleinschreibung", () => {
+  // So hat der Editor die Auszeichnung gespeichert, bevor sie entfernt wurde.
+  const stored = [
+    {
+      type: "h1",
+      children: [{ text: "MODELL " }, { text: "eTGX", lowercase: true }, { text: "iPhone", lowercase: true, bold: true }],
+    },
+  ];
+
+  it.each([
+    ["als Base64-Nutzlast", encodeEditorAttribute(stored as never)],
+    ["als unverpacktes JSON", JSON.stringify(stored)],
+  ])("fällt %s weg, der Text bleibt wie getippt", (_form, raw) => {
+    expect(parseEditorValue(raw)).toEqual([
+      {
+        type: "h1",
+        children: [{ text: "MODELL " }, { text: "eTGX" }, { text: "iPhone", bold: true }],
+      },
+    ]);
   });
 });
 

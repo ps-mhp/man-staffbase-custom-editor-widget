@@ -16,6 +16,8 @@ import { render, act, waitFor } from "@testing-library/react";
 import Form from "@rjsf/mui";
 import validator from "@rjsf/validator-ajv8";
 
+import { decodePayload } from "@shared/payload";
+
 import { startEditorInjector } from "./editor-injector";
 import { configurationSchema, uiSchema } from "./configuration-schema";
 import { encodeEditorAttribute, parseEditorValue } from "./editor-value";
@@ -71,6 +73,43 @@ describe("startEditorInjector", () => {
 
     const surface = await editable();
     await waitFor(() => expect(surface.querySelector("h2")).toHaveTextContent("Vorhandener Titel"));
+
+    await act(async () => {
+      stop();
+    });
+  });
+
+  it("lädt alten Inhalt mit der früheren Kleinschreibung und speichert ihn ohne sie", async () => {
+    const stored = [{ type: "h1", children: [{ text: "MODELL " }, { text: "eTGX", lowercase: true }] }];
+    const container = renderDialog(encodeEditorAttribute(stored as never));
+
+    let stop = (): void => {};
+    await act(async () => {
+      stop = startEditorInjector(container);
+    });
+
+    const surface = await editable();
+    await waitFor(() => expect(surface.querySelector("h1")?.textContent).toBe("MODELL eTGX"));
+    // `slate-lowercase` hängte Plate selbst an, solange das Plugin bestand.
+    expect(surface.querySelector(".text-lowercase, .slate-lowercase")).toBeNull();
+
+    // Die Leiste ist erst da, wenn Fett da ist; der Knopf für die
+    // Kleinschreibung gehört nicht mehr dazu.
+    await waitFor(() => expect(document.body.querySelector('[aria-label^="Fett"]')).not.toBeNull());
+    expect(document.body.querySelector('[aria-label^="Kleinschreibung"]')).toBeNull();
+
+    const save = document.body.querySelector<HTMLButtonElement>('[aria-label="Speichern"]')!;
+    await act(async () => {
+      save.click();
+    });
+
+    // Geprüft wird der rohe Feldwert, nicht `parseEditorValue`: das Lesen
+    // schnitte die Auszeichnung ohnehin weg und verdeckte, was gespeichert wurde.
+    const field = container.querySelector<HTMLTextAreaElement>("#root_content")!;
+    expect(decodePayload(field.value)).not.toMatch(/lowercase/);
+    expect(parseEditorValue(field.value)[0].children.map((node) => ("text" in node ? node.text : "")).join("")).toBe(
+      "MODELL eTGX",
+    );
 
     await act(async () => {
       stop();

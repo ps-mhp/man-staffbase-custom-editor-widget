@@ -38,6 +38,13 @@ describe("Stylesheets", () => {
       expect(spacings.filter((value) => !/:\s*normal\b/.test(value))).toEqual([]);
     });
 
+    it("kennt die entfernte Kleinschreibung nicht mehr", () => {
+      // Die Funktion ist entfernt; eine verbliebene Regel `.text-lowercase`
+      // setzte gespeicherten Text weiter klein, sobald die Klasse irgendwo
+      // auftaucht.
+      expect(richContentCss).not.toMatch(/lowercase/);
+    });
+
     it("nennt keine der alten Schriften und keine alten Gewichte", () => {
       expect(richContentCss).not.toMatch(/MANEurope|MAN Europe/);
       expect(richContentCss).not.toMatch(/font-weight:\s*(300|500|600)\b/);

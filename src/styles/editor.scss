@@ -417,14 +417,6 @@
     }
   }
 
-  // Ein Knopf, dessen Symbol aus Buchstaben besteht.
-  &__glyph {
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    text-transform: lowercase;
-  }
-
   &__icon {
     width: 17px;
     height: 17px;

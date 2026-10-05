@@ -23,7 +23,6 @@
 import React, { ReactElement, ReactNode } from "react";
 
 import { RichNode, RichText, RichElement, EditorValue, MARKS, STYLE_MARKS } from "./editor-value";
-import { LOWERCASE_CLASS } from "./content-class";
 
 const BLOCK_TAGS: Record<string, keyof React.JSX.IntrinsicElements> = {
   p: "p",
@@ -75,7 +74,6 @@ function renderText(node: RichText, key: number): ReactNode {
     if (mark === "highlight") content = <mark>{content}</mark>;
     if (mark === "superscript") content = <sup>{content}</sup>;
     if (mark === "subscript") content = <sub>{content}</sub>;
-    if (mark === "lowercase") content = <span className={LOWERCASE_CLASS}>{content}</span>;
   }
 
   // Farbe, Schriftgröße und Schriftart hängen zusammen an einer Hülle statt an
