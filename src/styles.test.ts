@@ -51,10 +51,10 @@ describe("Stylesheets", () => {
     });
 
     it("stellt keine Überschrift kleiner als body-m", () => {
-      // Der Fließtext steht in Craft bei 18px; `h5` darf nicht darunter
-      // fallen, `h6` höchstens eine Stufe.
-      expect(block(richContentCss, ".custom-editor-content h5")).toMatch(/font-size:\s*18px/);
-      expect(block(richContentCss, ".custom-editor-content h6")).toMatch(/font-size:\s*16px/);
+      // Der Fließtext steht bei 16px; `h5` darf nicht darunter fallen, `h6`
+      // höchstens eine Stufe.
+      expect(block(richContentCss, ".custom-editor-content h5")).toMatch(/font-size:\s*16px/);
+      expect(block(richContentCss, ".custom-editor-content h6")).toMatch(/font-size:\s*14px/);
     });
   });
 

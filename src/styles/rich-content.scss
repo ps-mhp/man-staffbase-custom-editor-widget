@@ -75,16 +75,16 @@
     color: man(text) !important;
   }
 
-  // Abgestuft wird nur die Größe: `h5` steht im Grad des Fließtexts, `h6` eine
-  // Craft-Stufe darunter (`body-m`) und gedämpft. Aus der Skala statt als
-  // `rem`: die Wurzelgröße der Wirtsseite schwankt (Staffbase 15px, man-theme
-  // 16px), und der Fließtext ist mit Craft auf 18px gewachsen.
+  // Abgestuft wird nur die Größe: `h5` steht im Grad des Fließtexts (16px),
+  // `h6` eine Craft-Stufe darunter (`body-s`, 14px) und gedämpft. Aus der Skala
+  // statt als `rem`: die Wurzelgröße der Wirtsseite schwankt (Staffbase 15px,
+  // man-theme 16px).
   h5 {
     font-size: map.get($man-type-scale, "body", "size") !important;
   }
 
   h6 {
-    font-size: map.get($man-type-scale, "body-m", "size") !important;
+    font-size: map.get($man-type-scale, "body-s", "size") !important;
     color: man(text-muted) !important;
   }
 
