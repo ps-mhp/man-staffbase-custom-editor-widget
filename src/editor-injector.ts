@@ -31,10 +31,10 @@ export function startEditorInjector(root: ParentNode = document): () => void {
     // Der Editor bringt seine eigenen Ränder mit: die Werkzeugleiste liegt
     // bündig an der Oberkante, die Schreibfläche polstert ihren Text selbst.
     // Die Polsterung des Panels legte um beides einen zweiten weißen Rand und
-    // nähme der Schreibfläche Platz, auf den es hier ankommt. `overflow:
-    // hidden` hält dabei die abgerundeten Ecken: ohne den Beschnitt schöbe die
-    // bündige Leiste ihre eckigen Kanten über den Radius des Panels.
-    panelStyle: { padding: 0, overflow: "hidden" },
+    // nähme der Schreibfläche Platz, auf den es hier ankommt. `overflow-hidden`
+    // hält dabei die abgerundeten Ecken: ohne den Beschnitt schöbe die bündige
+    // Leiste ihre eckigen Kanten über den Radius des Panels.
+    panelClassName: "p-0 overflow-hidden",
     parse: parseEditorValue,
     serialize: encodeEditorAttribute,
     render: ({ value, onChange, onSave, onClose, dirty }) =>

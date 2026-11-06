@@ -21,6 +21,7 @@ import { decodePayload } from "@shared/payload";
 import { startEditorInjector } from "./editor-injector";
 import { configurationSchema, uiSchema } from "./configuration-schema";
 import { encodeEditorAttribute, parseEditorValue } from "./editor-value";
+import { queryDeep, queryInModal } from "@shared/ui/config-modal.testing";
 
 const renderDialog = (content?: string): HTMLElement => {
   const { container } = render(
@@ -38,7 +39,7 @@ const renderDialog = (content?: string): HTMLElement => {
 /** Wartet, bis der nachgeladene Plate-Chunk gemountet ist. */
 const editable = async (): Promise<HTMLElement> =>
   waitFor(() => {
-    const node = document.body.querySelector<HTMLElement>('[contenteditable="true"]');
+    const node = queryInModal<HTMLElement>('[contenteditable="true"]');
     if (node === null) throw new Error("Schreibfläche noch nicht da");
     return node;
   });
@@ -54,7 +55,7 @@ describe("startEditorInjector", () => {
 
     const field = container.querySelector<HTMLTextAreaElement>("#root_content")!;
     expect(field.style.display).toBe("none");
-    expect(document.body.querySelector('[data-testid="custom-editor-modal"]')).not.toBeNull();
+    expect(queryInModal('[data-testid="custom-editor-modal"]')).not.toBeNull();
 
     await act(async () => {
       stop();
@@ -95,10 +96,10 @@ describe("startEditorInjector", () => {
 
     // Die Leiste ist erst da, wenn Fett da ist; der Knopf für die
     // Kleinschreibung gehört nicht mehr dazu.
-    await waitFor(() => expect(document.body.querySelector('[aria-label^="Fett"]')).not.toBeNull());
-    expect(document.body.querySelector('[aria-label^="Kleinschreibung"]')).toBeNull();
+    await waitFor(() => expect(queryInModal('[aria-label^="Fett"]')).not.toBeNull());
+    expect(queryInModal('[aria-label^="Kleinschreibung"]')).toBeNull();
 
-    const save = document.body.querySelector<HTMLButtonElement>('[aria-label="Speichern"]')!;
+    const save = queryInModal<HTMLButtonElement>('[aria-label="Speichern"]')!;
     await act(async () => {
       save.click();
     });
@@ -129,18 +130,18 @@ describe("startEditorInjector", () => {
     const bold = await waitFor(() => {
       // Gesucht wird über den barrierefreien Namen, nicht über `title`: den
       // trägt kein Werkzeug mehr, seit die Leiste eigene Hinweise zeigt.
-      const button = document.body.querySelector<HTMLButtonElement>('[aria-label^="Fett"]');
+      const button = queryInModal<HTMLButtonElement>('[aria-label^="Fett"]');
       if (button === null) throw new Error("Werkzeugleiste noch nicht da");
       return button;
     });
     expect(bold).toBeInTheDocument();
 
     // Speichern trägt nur noch ein Symbol; gesucht wird über seinen Namen.
-    const save = document.body.querySelector<HTMLButtonElement>('[aria-label="Speichern"]')!;
+    const save = queryInModal<HTMLButtonElement>('[aria-label="Speichern"]')!;
     // Speichern steht im festen linken Ende der Leiste, damit es nicht mit den
     // Werkzeugen aus dem Bild läuft.
     expect(save.closest(".custom-editor__bar-lead")).not.toBeNull();
-    expect(document.body.querySelector('[aria-label="Editor schließen"]')).not.toBeNull();
+    expect(queryInModal('[aria-label="Editor schließen"]')).not.toBeNull();
     await act(async () => {
       save.click();
     });
@@ -150,7 +151,7 @@ describe("startEditorInjector", () => {
     expect(parseEditorValue(field.value)).toEqual([{ type: "p", children: [{ text: "" }] }]);
 
     // Nach dem Speichern schließt der Dialog und bietet das Wiederöffnen an.
-    expect(document.body.querySelector('[data-testid="custom-editor-reopen"]')).not.toBeNull();
+    expect(queryDeep(container, '[data-testid="custom-editor-reopen"]')).not.toBeNull();
 
     await act(async () => {
       stop();
