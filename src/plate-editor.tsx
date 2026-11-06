@@ -129,6 +129,7 @@ import { EditorValue, MARKS, STYLE_MARKS, TextAlign, isSafeUrl } from "./editor-
 import { CONTENT_CLASS } from "./content-class";
 import editorCss from "./styles/editor.scss";
 import richContentCss from "./styles/rich-content.scss";
+import { eventRootOf } from "@shared/shadow-dom";
 
 const WIDGET = "custom-editor-widget";
 
@@ -551,8 +552,10 @@ function ColorPicker({
     const onDown = (event: MouseEvent): void => {
       if (!wrapper.current?.contains(event.target as Node)) setAt(null);
     };
-    document.addEventListener("mousedown", onDown);
-    return () => document.removeEventListener("mousedown", onDown);
+    // An der Wurzel des Editors: im Config-Modal endet jeder Klick am Host.
+    const root = eventRootOf(wrapper.current);
+    root.addEventListener("mousedown", onDown as EventListener);
+    return () => root.removeEventListener("mousedown", onDown as EventListener);
   }, [open]);
 
   // Das Feld wird nicht am Knopf aufgehängt, sondern am Fenster: die
