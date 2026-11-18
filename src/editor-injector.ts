@@ -50,7 +50,8 @@ export const customEditorShell: FieldModalShellOptions<EditorValue> = {
   icon: Type,
   preview: false,
   help: React.createElement(React.Suspense, { fallback: null }, React.createElement(LazyEditorHelp)),
-  // Der Status zeigt den Text nur, solange etwas offen ist.
+  // Der Rahmen fragt nur, solange der Entwurf vom Übernommenen abweicht –
+  // eine feste Zeile genügt.
   statusText: () => "Text geändert",
 };
 
