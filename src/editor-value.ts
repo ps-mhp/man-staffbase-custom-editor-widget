@@ -269,16 +269,44 @@ export function parseEditorValue(raw: string | undefined): EditorValue {
 
   if (!Array.isArray(parsed)) return emptyValue();
 
-  const blocks = parsed
+  return sanitizeBlocks(parsed);
+}
+
+/** Die Blöcke eines unbekannten Baums, auf bekannte Typen zurückgeschnitten. */
+function sanitizeBlocks(nodes: readonly unknown[]): EditorValue {
+  const blocks = nodes
     .map(sanitizeNode)
     .filter((node): node is RichElement => node !== null && "type" in node);
 
   return blocks.length > 0 ? blocks : emptyValue();
 }
 
+/**
+ * Der Baum in der Form, in der ihn die Leseansicht sieht: ohne Plates
+ * Knotenkennungen (`id`) und ohne alles, was `parseEditorValue` ohnehin
+ * verwürfe. Gibt einen neuen Baum zurück; der übergebene bleibt, wie er ist.
+ */
+export function normalizeEditorValue(value: readonly unknown[]): EditorValue {
+  return sanitizeBlocks(value);
+}
+
 /** Schreibt den Baum so, wie er im Attribut steht. */
 export function encodeEditorAttribute(value: EditorValue): string {
   return encodePayload(JSON.stringify(value));
+}
+
+/**
+ * Schreibt den Baum in seiner Leseform (siehe {@link normalizeEditorValue}).
+ *
+ * Das Config-Modal vergleicht Entwurf und übernommenen Stand über genau diese
+ * Form. Plate hängt im Betrieb an jeden Knoten eine Kennung; ein Vergleich
+ * des rohen Baums hielte deshalb schon einen Klick in den Text für eine
+ * Änderung – und „Übernehmen“ schriebe einen Block neu, an dem niemand etwas
+ * geändert hat. Das Format im Attribut bleibt dasselbe wie bei
+ * {@link encodeEditorAttribute}.
+ */
+export function serializeEditorValue(value: EditorValue): string {
+  return encodeEditorAttribute(normalizeEditorValue(value));
 }
 
 /** Ob das Dokument nichts als leere Blöcke enthält. */

@@ -17,7 +17,9 @@ import {
   encodeEditorAttribute,
   isEmptyValue,
   isSafeUrl,
+  normalizeEditorValue,
   parseEditorValue,
+  serializeEditorValue,
 } from "./editor-value";
 
 const doc: EditorValue = [
@@ -255,5 +257,41 @@ describe("neue Blocktypen", () => {
     ] as never);
 
     expect(parseEditorValue(raw).map((block) => block.type)).toEqual(["code_block", "h6"]);
+  });
+});
+
+describe("Leseform des Editors", () => {
+  // So legt Plate den Baum im Betrieb an: mit Knotenkennungen und eigenen
+  // Eigenschaften, die die Leseansicht nicht kennt.
+  const fromPlate = [
+    { type: "h2", id: "a1", children: [{ text: "Titel" }] },
+    { type: "code_block", id: "a2", lang: "ts", children: [{ type: "code_line", id: "a3", children: [{ text: "x" }] }] },
+    { type: "p", id: "a4", children: [{ text: "MODELL " }, { text: "eTGX", lowercase: true }] },
+  ] as never as EditorValue;
+
+  it("schneidet den Baum auf das zurück, was parseEditorValue lesen würde", () => {
+    expect(normalizeEditorValue(fromPlate)).toEqual(parseEditorValue(encodeEditorAttribute(fromPlate)));
+    expect(JSON.stringify(normalizeEditorValue(fromPlate))).not.toMatch(/"id"|lang|lowercase/);
+  });
+
+  it("verändert den übergebenen Baum nicht", () => {
+    const before = JSON.stringify(fromPlate);
+    normalizeEditorValue(fromPlate);
+    expect(JSON.stringify(fromPlate)).toBe(before);
+  });
+
+  it("ergibt für einen leeren Baum ein leeres Dokument", () => {
+    expect(normalizeEditorValue([])).toEqual(emptyValue());
+  });
+
+  it("schreibt gleich, was gleich aussieht – Kennungen ändern nichts", () => {
+    const withoutIds = parseEditorValue(encodeEditorAttribute(fromPlate));
+    expect(serializeEditorValue(fromPlate)).toBe(serializeEditorValue(withoutIds));
+  });
+
+  it("schreibt dasselbe Format wie bisher: Base64-Nutzlast des Baums", () => {
+    expect(serializeEditorValue(doc)).toMatch(/^b64:/);
+    expect(parseEditorValue(serializeEditorValue(doc))).toEqual(doc);
+    expect(parseEditorValue(serializeEditorValue(fromPlate))).toEqual(normalizeEditorValue(fromPlate));
   });
 });
