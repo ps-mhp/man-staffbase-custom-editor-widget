@@ -25,5 +25,11 @@ hinterlässt also keine Lücke.
 
 ## Was Sie im CMS-Editor sehen
 
-Statt eines Textfeldes den Knopf **Inhalt bearbeiten**. Er öffnet den Editor
-als großes Fenster über dem Dialog.
+Der Editor öffnet sich als Vollbild-Fenster über dem Dialog, im selben Rahmen
+wie alle MAN-Widgets: oben der Kopf mit **Abbrechen**, **Übernehmen**,
+Rückgängig, Wiederholen und Hilfe, darunter die Werkzeugleiste **Format** und
+der Text auf einem Blatt in Seitenbreite. Eine eigene Vorschau gibt es nicht –
+das Blatt zeigt den Text bereits so, wie er auf der Seite steht.
+
+Im Dialog selbst steht danach der Knopf **Inhalt bearbeiten**, der das Fenster
+wieder öffnet.
