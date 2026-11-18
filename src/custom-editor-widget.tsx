@@ -28,8 +28,8 @@ export type CustomEditorWidgetProps = BlockAttributes & {
 /**
  * Die veröffentlichte Ansicht.
  *
- * Kein Plate: der Editor wird nur im Konfigurationsdialog nachgeladen (siehe
- * `editor-modal.tsx`), hier läuft der eigene Renderer über denselben Baum.
+ * Kein Plate: der Editor wird nur im Config-Modal nachgeladen (siehe
+ * `editor-injector.ts`), hier läuft der eigene Renderer über denselben Baum.
  *
  * Ein leeres Dokument gibt gar nichts aus. Ein frisch eingefügtes Widget ohne
  * Inhalt soll auf der Seite keinen leeren Kasten hinterlassen.

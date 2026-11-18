@@ -12,15 +12,56 @@
  */
 
 import React from "react";
+import { Type } from "lucide-react";
 
-import { startFieldModalInjector } from "@shared/config-modal";
+import { FieldModalShellOptions, startFieldModalInjector } from "@shared/config-modal";
 
-import { EditorValue, parseEditorValue, encodeEditorAttribute } from "./editor-value";
-import { EditorModal } from "./editor-modal";
+import { EditorValue, parseEditorValue, serializeEditorValue } from "./editor-value";
 
 const FIELD_KEY = "content";
 
-/** Setzt den Editor an die Stelle des `content`-Feldes im Dialog. */
+/**
+ * Der Editor kommt erst, wenn ein Dialog ihn zeigt: Plate samt Slate und
+ * `@man/config-ui` (Radix, Tailwind) wiegen ein Vielfaches des Widgets, und
+ * auf einer veröffentlichten Seite öffnet niemand den Dialog. Hier bleibt nur,
+ * was der Rahmen braucht, bevor der Editor da ist: Name, Icon, Status.
+ */
+const loadEditor = () => import("./plate-editor");
+
+const LazyEditor = React.lazy(loadEditor);
+
+/** Die Hilfe aus demselben Chunk wie der Editor; ihr Text gehört nicht ins Seitenbündel. */
+const LazyEditorHelp = React.lazy(() => loadEditor().then((module) => ({ default: module.CustomEditorHelp })));
+
+const LOADING = React.createElement("p", { className: "p-6 text-sm text-muted-foreground" }, "Editor wird geladen …");
+
+/**
+ * Was der gemeinsame Rahmen vom Editor wissen muss. Offengelegt für Tests.
+ *
+ * Keine Vorschau: die Schreibfläche zeigt schon Schriften und Abstände der
+ * Seite, eine zweite Ansicht desselben Textes brächte nichts. Keine Prüfung:
+ * jeder Baum lässt sich schreiben, `parseEditorValue` schneidet beim Lesen
+ * alles Unbekannte weg, und eine unsichere Adresse lässt schon das
+ * Link-Formular nicht durch.
+ */
+export const customEditorShell: FieldModalShellOptions<EditorValue> = {
+  widgetName: "Editor",
+  title: "Text bearbeiten",
+  icon: Type,
+  preview: false,
+  help: React.createElement(React.Suspense, { fallback: null }, React.createElement(LazyEditorHelp)),
+  // Der Status zeigt den Text nur, solange etwas offen ist.
+  statusText: () => "Text geändert",
+};
+
+/**
+ * Setzt den Editor an die Stelle des `content`-Feldes im Dialog.
+ *
+ * Geschrieben wird `serializeEditorValue`: derselbe Base64-Baum wie bisher,
+ * aber ohne Plates Knotenkennungen. Der Rahmen vergleicht über genau diese
+ * Form – ein Klick in den Text ist so keine Änderung, „Übernehmen“ bleibt
+ * aus, und ein unveränderter Block wird nie neu geschrieben.
+ */
 export function startEditorInjector(root: ParentNode = document): () => void {
   return startFieldModalInjector<EditorValue>({
     fieldKey: FIELD_KEY,
@@ -28,16 +69,10 @@ export function startEditorInjector(root: ParentNode = document): () => void {
     reopenLabel: "Inhalt bearbeiten",
     modalTestId: "custom-editor-modal",
     reopenTestId: "custom-editor-reopen",
-    // Der Editor bringt seine eigenen Ränder mit: die Werkzeugleiste liegt
-    // bündig an der Oberkante, die Schreibfläche polstert ihren Text selbst.
-    // Die Polsterung des Panels legte um beides einen zweiten weißen Rand und
-    // nähme der Schreibfläche Platz, auf den es hier ankommt. `overflow-hidden`
-    // hält dabei die abgerundeten Ecken: ohne den Beschnitt schöbe die bündige
-    // Leiste ihre eckigen Kanten über den Radius des Panels.
-    panelClassName: "p-0 overflow-hidden",
     parse: parseEditorValue,
-    serialize: encodeEditorAttribute,
-    render: ({ value, onChange, onSave, onClose, dirty }) =>
-      React.createElement(EditorModal, { value, onChange, onSave, onClose, dirty }),
+    serialize: serializeEditorValue,
+    shell: customEditorShell,
+    render: ({ value, onChange }) =>
+      React.createElement(React.Suspense, { fallback: LOADING }, React.createElement(LazyEditor, { value, onChange })),
   });
 }

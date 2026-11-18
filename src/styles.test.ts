@@ -78,4 +78,16 @@ describe("Stylesheets", () => {
       expect(faces.join("\n")).not.toMatch(/MANEurope|maneurope/);
     });
   });
+
+  describe("Editor im Config-Modal (editor.scss)", () => {
+    it("trägt keine Regeln des alten Modals mehr", () => {
+      // Leiste, Hinweise, Farbfelder und Link-Dialog zeichnet jetzt
+      // `@man/config-ui`; ihre alten Klassen sollen nirgends mehr greifen.
+      expect(editorCss).not.toMatch(/custom-editor__(bar|track|tools|btn|tip|palette|overlay|dialog|input|select)\b/);
+    });
+
+    it("färbt den Platzhalter über das Token des Rahmens", () => {
+      expect(editorCss).toMatch(/data-slate-placeholder[^{]*\{[^}]*color:\s*var\(--muted-foreground\)/);
+    });
+  });
 });
