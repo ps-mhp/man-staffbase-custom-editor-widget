@@ -1,34 +1,49 @@
 # FAQ
 
-## Czy mogę wstawić tekst z Worda? 
+## Czy mogę wstawić tekst z programu Word?
 
-Tak. Struktura i znaczniki, które widżet zna — nagłówki, 
-Listy wypunktowane, pogrubione, kursywa — będą kopiowane. Wszystko inne (czcionki, 
-Kolory, rozmiary z Worda) zostały pominięte, aby tekst podążał za wzorem MAN. 
+Tak. Struktura i formatowanie rozpoznawane przez widżet — nagłówki,
+wypunktowania, pogrubienie, kursywa — zostaną zachowane. Wszystko inne (np. czcionki
+z programu Word) zostanie usunięte, aby tekst był zgodny z szablonem MAN.
 
-## Dlaczego nie mogę wybrać czcionki ani koloru? 
+## Dlaczego nie mogę wybrać czcionki ani dowolnego koloru?
 
-Ponieważ oba są zdefiniowane w projekcie MAN. Tekst z własną czcionką
-wypada ze strony zaraz po poprawie projektu. 
+Czcionka jest ustalona w szablonie MAN: tekst, który ma własną czcionkę,
+wypada poza stronę, gdy tylko dostosuje się szablon.
+Można ustawić rozmiar, kolor tekstu i tło tekstu, ale kolory można wybierać tylko z
+stałej palety dwunastu odcieni.
 
-## Czy jest jakiś limit długości? 
+## Dlaczego nie ma podglądu, tak jak w przypadku innych widżetów?
 
-Praktycznie nie dla tekstu ciągłego. Limit dotyczy całego wkładu, nie
-i zmierzono około 16 milionów znaków — to jest
-kilka tysięcy stron książek. 
+Ponieważ strona w edytorze jest już podglądem: wykorzystuje te same
+czcionki, rozmiary i odstępy, co opublikowana strona.
 
-## Czy mogę wstawić obrazy? 
+## Czy istnieje ograniczenie długości?
 
-Nie. Do zdjęć użyj widżetu z Staffbase lub
-Tabela, która może robić zdjęcia do komórek. 
+W przypadku tekstu ciągłego praktycznie nie. Ograniczenie dotyczy całego artykułu, a nie
+samego widżetu, i wynosi około 16 milionów znaków — to
+kilka tysięcy stron książki.
 
-## Tekst na stronie wygląda inaczej niż w edytorze. 
+## Czy mogę wstawiać zdjęcia?
 
-Nie powinno się to zdarzyć — redaktor i strona korzystają z tego samego zestawu zasad. 
-Jeśli tak, najpierw sprawdź, czy strona została już ponownie opublikowana. 
-a poza tym zgłaszać to razem ze zrzutem ekranu obu widoków. 
+Nie. Do zdjęć należy używać widżetu zdjęć Staffbase lub
+tabeli, która może zawierać zdjęcia w komórkach.
 
-## Przypadkowo usunąłem wszystko. 
+## Tekst na stronie wygląda inaczej niż w edytorze.
 
-Dopóki okno edytora jest otwarte: Ctrl+Z. Jest już zapisane i
-Dialog zamknięty, pomaga tylko historia wersji strony w Staffbase.
+Nie powinno tak być — edytor i strona stosują te same zasady formatowania.
+Jeśli jednak tak się dzieje, sprawdź najpierw, czy strona została już ponownie opublikowana,
+a jeśli nie, zgłoś to, dołączając zrzut ekranu obu widoków.
+
+## Przypadkowo skasowałem wszystko.
+
+O ile okno edytora jest otwarte: ⌘/Ctrl Z w tekście lub **Cofnij** w
+nagłówku. Nie zatwierdzono jeszcze zmian? W takim razie przycisk **Anuluj** cofa wszystko od momentu
+ostatniego zatwierdzenia. Jeśli zmiany zostały już zapisane, a okno dialogowe zamknięte, jedyną pomocą
+jest historia wersji strony w Staffbase.
+
+## Czy samo otwarcie edytora zmienia mój tekst?
+
+Nie. Kto otworzy edytor i zamknie go bez wprowadzania zmian lub bez zatwierdzania,
+ten niczego nie zapisuje: opcja **Zatwierdź** pozostaje nieaktywna, dopóki nic nie zostało zmienione, a
+blok na stronie pozostaje taki, jaki był.

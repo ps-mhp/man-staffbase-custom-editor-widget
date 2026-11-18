@@ -1,29 +1,35 @@
 # Editor
 
-O widget coloca o texto do corpo formatado em uma página: cabeçalhos, 
-Parágrafos, listas com tópicos, citações, referências e linhas divisórias. É destinado a
-Qualquer coisa que precise de mais estrutura do que uma única linha de texto, mas não
-widget próprio — seções explicativas, textos informativos, folhetos. 
+Este widget insere texto contínuo formatado numa página: títulos,
+parágrafos, listas, citações, referências e linhas divisórias. Destina-se a
+tudo o que necessite de mais estrutura do que uma única linha de texto, mas que não
+justifique um widget próprio — textos explicativos, notas informativas, folhetos informativos.
 
-A escrita é feita em um editor que se parece exatamente com o resultado: o
-A superfície de escrita usa as mesmas fontes, tamanhos e espaçamentos que a
-página publicada. O que é um título no editor está na página
-Um título — não existe um segundo nível de formatação que possa ser usado para
-poderia desviar. 
+A redação é feita num editor com o mesmo aspeto que o resultado final: a
+área de escrita utiliza os mesmos tipos de letra, tamanhos e espaçamentos que a
+página publicada. O que é um título no editor é, na página,
+um título — não existe um segundo nível de formatação que possa
+desviar-se disso.
 
-O texto é salvo como uma estrutura, não como HTML finalizado. Por isso
-faz automaticamente uma alteração no design MAN sem que ninguém precise alterar o conteúdo do
-. 
+O texto é guardado como estrutura, não como HTML finalizado. Por isso,
+reflete automaticamente qualquer alteração no design do MAN, sem que seja necessário que alguém
+altere o conteúdo.
 
 ## O que os leitores veem
 
-O texto formatado, embutido na página. Sem molduras, sem caixas, 
-Sem o título do próprio widget — o widget só traz seu conteúdo. 
+O texto formatado, incorporado na página. Sem molduras, sem caixas,
+sem título do próprio widget — o widget apresenta apenas o seu conteúdo.
 
-Se nada for inserido, nada aparece na página. Um widget vazio
-Assim, não deixa um vazio. 
+Se nada for introduzido, não aparece nada na página. Um widget vazio
+não deixa, portanto, qualquer espaço em branco.
 
-## O que você vê no editor CMS
+## O que vê no editor do CMS
 
-Em vez de um campo de texto, pressione o botão **Editar Conteúdo**. Ele abre o editor
-como uma grande janela acima do diálogo.
+O editor abre-se como uma janela em ecrã inteiro sobre a caixa de diálogo, no mesmo quadro
+que todos os widgets MAN: na parte superior, o cabeçalho com **Cancelar**, **Aplicar**,
+**Anular**, **Repetir** e **Ajuda**; por baixo, a barra de ferramentas **Formato** e
+o texto numa folha com a largura da página. Não existe uma pré-visualização específica —
+a folha já mostra o texto tal como aparece na página.
+
+Na própria caixa de diálogo, encontra-se em seguida o botão **Editar conteúdo**, que volta a
+abrir a janela.

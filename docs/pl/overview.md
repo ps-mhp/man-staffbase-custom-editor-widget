@@ -1,29 +1,35 @@
-# Redaktor
+# Edytor
 
-Widżet umieszcza na stronie sformatowany tekst główny: nagłówki, 
-Akapity, listy punktowane, cytaty, odniesienia i linie dzielące. Przeznaczone są do
-wszystko, co wymaga więcej struktury niż jedna linijka tekstu, ale nie
-własny widget — sekcje wyjaśniające, teksty informacyjne, ulotki. 
+Ten widget umieszcza na stronie sformatowany tekst ciągły: nagłówki,
+akapity, wypunktowania, cytaty, odnośniki i linie oddzielające. Przeznaczony jest do
+wszystkiego, co wymaga większej struktury niż pojedyncza linia tekstu, ale nie
+uzasadnia stworzenia osobnego widżetu — wyjaśnienia, teksty informacyjne, ulotki.
 
-Pisanie odbywa się w edytorze, który wygląda dokładnie tak jak efekt:
-Powierzchnia do pisania używa tych samych czcionek, rozmiarów i odstępów co
-opublikowana strona. To, czym jest nagłówek w edytorze, znajduje się na stronie
-Nagłówek — nie ma drugiego poziomu formatowania, którego można by użyć
-może się zboczyć. 
+Pisze się w edytorze, który wygląda dokładnie tak samo jak efekt końcowy:
+obszar edycji wykorzystuje te same czcionki, rozmiary i odstępy, co
+opublikowana strona. To, co w edytorze jest nagłówkiem, na stronie
+jest nagłówkiem — nie ma drugiego poziomu formatowania, który mógłby
+się od tego różnić.
 
-Tekst jest zapisywany jako struktura, a nie jako gotowy HTML. Dlatego
-automatycznie wprowadza zmiany w projekcie MAN bez konieczności zmiany zawartości
-. 
+Tekst jest zapisywany jako struktura, a nie jako gotowy kod HTML. Dlatego
+zmiany w projekcie MAN są automatycznie odzwierciedlane, bez konieczności
+ręcznej ingerencji w treść.
 
 ## Co widzą czytelnicy
 
-Sformatowany tekst, osadzony na stronie. Bez ramek, bez ramek, 
-Bez nagłówka samego widżetu — widżet wyświetla tylko swoją treść. 
+Sformatowany tekst osadzony na stronie. Bez ramki, bez pola,
+bez nagłówka samego widżetu — widżet zawiera wyłącznie swoją treść.
 
-Jeśli nic nie zostanie wprowadzone, na stronie nic się nie pojawia. Pusty widżet
-Żeby nie zostawić luki. 
+Jeśli nic nie zostało wpisane, na stronie nie pojawia się nic. Pusty widżet
+nie pozostawia więc żadnej luki.
 
 ## Co widzisz w edytorze CMS
 
-Zamiast pola tekstowego naciśnij przycisk **Edytuj treść**. Otwiera się edytor
-jako duże okno nad dialogiem.
+Edytor otwiera się jako okno na cały ekran nad oknem dialogowym, w tej samej ramce,
+co wszystkie widżety MAN: u góry nagłówek z przyciskami **Anuluj**, **Zastosuj**,
+Cofnij, Powtórz i Pomoc, a poniżej pasek narzędzi **Format** oraz
+tekst na arkuszu o szerokości strony. Nie ma osobnego podglądu –
+arkusz pokazuje tekst już w takiej postaci, w jakiej pojawia się na stronie.
+
+W samym oknie dialogowym znajduje się następnie przycisk **Edytuj treść**, który ponownie
+otwiera okno.

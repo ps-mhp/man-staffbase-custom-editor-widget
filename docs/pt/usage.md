@@ -2,39 +2,59 @@
 
 ## Escrever texto
 
-1. Insira o widget na página. O diálogo de configuração se abre, e
-   o editor aparece imediatamente como uma grande janela. 
-2. Escreva texto. O editor se comporta como um processador de texto: 
-   Enter inicia um novo parágrafo, Shift+Enter inicia uma nova linha
-   no mesmo parágrafo. 
-3. Selecione o **estilo de parágrafo** no canto superior esquerdo — texto do corpo, cabeçalho 1 a 3
-   ou citação. Aplica-se ao parágrafo em que a marca de escrita aparece. 
-4. Selecione texto e coloque negrito sobre **F**, **K**, **U**, **S** ou **<!---->**, 
-   itálico, sublinhado, riscado ou marcando como código. 
-   Atalhos: Ctrl+B, Ctrl+I, Ctrl+U. 
-5. **Salvar** no canto superior direito. Depois disso, a janela se fecha; via **Conteúdo
-   Edit** Volte. 
-6. Confirme o diálogo de configuração como de costume e abra a página
-   . 
+1. Inserir o widget na página. A caixa de diálogo de configuração abre-se e
+   o editor aparece imediatamente como uma janela em ecrã inteiro.
+2. Escrever o texto. O editor funciona como um programa de processamento de texto:
+   a tecla Enter inicia um novo parágrafo, Shift+Enter inicia uma nova linha
+   no mesmo parágrafo.
+3. Na parte superior da barra de ferramentas, selecione o **formato do parágrafo** — texto corrido,
+   título 1 a 6, citação ou bloco de código. A aplicação é feita ao parágrafo em que
+   se encontra o cursor.
+4. Selecione o texto e aplique **negrito**, **itálico**, **sublinhado**,
+   **riscado** ou **código**. Atalhos de teclado: ⌘/Ctrl B,
+   ⌘/Ctrl B, ⌘/Ctrl I, ⌘/Ctrl U. As opções «Destacar», «Superíndice» e «Subíndice», «Tecla» e
+   «Remover formatação» encontram-se atrás de **…** ao lado.
+5. No canto superior direito, clique em **Aplicar** (⌘/Ctrl S). Em seguida, a janela fecha; através de
+   **Editar conteúdo** pode voltar.
+6. Confirme a caixa de diálogo de configuração como habitualmente e guarde
+   e publique a página. «Aplicar» apenas grava na caixa de diálogo – o arquivo
+   só é guardado com «Guardar» no Studio.
 
-## Crie uma lista com tópicos
+## Criar uma enumeração
 
-Coloque a marca da caneta no parágrafo e **Lista** (pontos) ou **1ª lista** 
-(Números). A tecla Enter cria o próximo ponto, a tabulação se move
-um vírgula um nível, Shift + Tab para fora novamente. O dobro do
-Enter fecha a lista. 
+Coloque o cursor no parágrafo e selecione **Enumeração** (pontos) ou
+**Lista numerada** (números). A tecla Enter cria o próximo ponto,
+a tecla Tab recua um ponto um nível, e Shift+Tab avança um nível.
+Premir duas vezes a tecla Enter termina a lista. **Recuar** e **Avançar**
+também permitem recuar ou avançar parágrafos, títulos e citações gradualmente.
 
-## Referência
+## Criar um link
 
-1. Selecione o texto que se tornará referência. 
-2. Pressione **Referência**. Insira o endereço — completo com 'https://'. 
-3. **Inserir**. 
+1. Selecione o texto que pretende transformar em link.
+2. Selecione **Link**. Abre-se uma barra à direita.
+3. Introduza o **endereço** — completo com `https://`, ou `mailto:` ou
+   `tel:`. O campo não permite outros esquemas e indica-o imediatamente.
+4. Se necessário, ajuste o **texto** e selecione **Inserir ligação**.
 
-Para remover, coloque a marca de escrita na referência e **Desvincule o link** 
-. 
+Se o cursor já estiver dentro de uma ligação, a mesma ferramenta abre-a para
+alteração. Para remover, coloque o cursor dentro da ligação e selecione **Remover
+ligação**; o texto permanece inalterado.
 
-## Se algo não foi salvo
+## Tamanho e cor
 
-Desde que as alterações não salvas estejam abertas, **Não salvo** em
-barra de ferramentas. Se você fechar a janela, será perguntado se o
-Mudanças devem ser descartadas.
+No final da barra encontram-se **Tamanho da fonte**, **Cor do texto** e
+**Fundo do texto**. As cores provêm de uma seleção fixa de doze
+tons; **Padrão** reverte para a cor predefinida.
+
+## Desfazer
+
+Se o cursor estiver no texto, ⌘/Ctrl Z desfaz a última ação.
+**Desfazer** e **Repetir**, na parte superior, percorrem passo a passo todos os
+estados desde a abertura.
+
+## Se algo não tiver sido aplicado
+
+Enquanto houver alterações pendentes, aparece ao lado do título **Texto alterado – não
+aplicado**. Se fechar a janela nessa altura, ser-lhe-á perguntado se as alterações
+devem ser aplicadas ou descartadas. Se clicar apenas na janela, sem alterar nada,
+não há nada para aplicar – o bloco permanece inalterado.

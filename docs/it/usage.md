@@ -1,40 +1,60 @@
 # Passo dopo passo
 
-## Scrivi testo
+## Scrivere un testo
 
-1. Inserire il widget sulla pagina. Si apre la finestra di configurazione e
-   l'editore appare immediatamente come una grande finestra. 
-2. Scrivi testo. L'editor si comporta come un word processor: 
-   Enter inizia un nuovo paragrafo, Shift+Enter apre una nuova riga
-   nello stesso paragrafo. 
-3. Seleziona lo **stile del paragrafo** nell'angolo in alto a sinistra — testo del corpo, intestazione da 1 a 3
-   o citazione. Si applica al paragrafo in cui compare il segno di scrittura. 
-4. Seleziona il testo e mettilo in grassetto su **F**, **K**, **U**, **S** o **<!---->**, 
-   corsivo, sottolineato, cancellato o segnato come codice. 
-   Scorciatoie: Ctrl+B, Ctrl+I, Ctrl+U. 
-5. **Salva** in alto a destra. Dopo di che, la finestra si chiude; tramite **Contenuto
-   modifica** Torna indietro. 
-6. Conferma la finestra di configurazione come al solito e apri la pagina
-   . 
+1. Inserire il widget nella pagina. Si apre la finestra di dialogo di configurazione e
+   l’editor appare immediatamente come finestra a schermo intero.
+2. Scrivere il testo. L’editor funziona come un programma di elaborazione testi:
+   il tasto Invio avvia un nuovo paragrafo, Maiusc+Invio una nuova riga
+   nello stesso paragrafo.
+3. Selezionare **Formato paragrafo** nella barra degli strumenti in primo piano — testo continuo,
+   titolo da 1 a 6, citazione o blocco di codice. L’impostazione si applica al paragrafo in cui
+   si trova il cursore.
+4. Selezionare il testo e applicare **grassetto**, **corsivo**, **sottolineato**,
+   **barrato** o **codice**. Scorciatoie da tastiera: ⌘/Ctrl B,
+   ⌘/Ctrl B, ⌘/Ctrl I, ⌘/Ctrl U. Evidenzia, apice e pedice, tasto e
+   «Rimuovi formattazione» si trovano dietro **…** accanto.
+5. In alto a destra **Applica** (⌘/Ctrl S). A questo punto la finestra si chiude; tramite
+   **Modifica contenuto** è possibile tornare indietro.
+6. Confermare la finestra di dialogo di configurazione come di consueto, quindi salvare
+   e pubblicare la pagina. «Applica» salva solo nella finestra di dialogo – il salvataggio
+   effettivo avviene solo con «Salva» in Studio.
 
-## Crea una lista elencata
+## Creare un elenco
 
-Metti il segno della penna nel paragrafo e **Lista** (punti) o **1ª lista** 
-(Numeri). Il tasto Invio crea il punto successivo, la tabulazione si muove
-uno punto un livello, Shift + Tab fuori di nuovo. Il doppio
-Enter chiude la lista. 
+Posizionare il cursore nel paragrafo e selezionare **Elenco puntato** (punti) o
+**Elenco numerato** (numeri). Il tasto Invio crea il punto successivo,
+il tasto Tab fa avanzare di un livello, Maiusc+Tab lo fa arretrare.
+Premendo due volte il tasto Invio si chiude l’elenco. **Rientro** e **Uscita**
+permettono inoltre di indentare gradualmente paragrafi, titoli e citazioni.
 
-## Riferimento
+## Inserire un link
 
-1. Seleziona il testo che diventerà un riferimento. 
-2. Premi **Reference**. Inserisci l'indirizzo — completo di 'https://'. 
-3. **Inserire**. 
+1. Selezionare il testo che deve diventare un link.
+2. Selezionare **Collegamento**. A destra si apre una barra.
+3. Inserire l’**indirizzo** — completo di `https://`, oppure `mailto:` o
+   `tel:`. Il campo non accetta altri schemi e lo segnala immediatamente.
+4. Modificare il **testo** se necessario e selezionare **Inserisci link**.
 
-Per rimuoverlo, posiziona il segno di scrittura nel riferimento e **Scollega il link** 
-. 
+Se il cursore si trova già all’interno di un link, lo stesso strumento lo apre per
+modificarlo. Per rimuoverlo, posizionare il cursore all’interno del link e selezionare **Rimuovi link**;
+il il testo rimane invariato.
 
-## Se qualcosa non è stato salvato
+## Dimensione e colore
 
-Finché le modifiche non salvate sono aperte, **Non salvate** in
-barra degli strumenti. Se poi chiudi la finestra, ti verrà chiesto se il
-le modifiche devono essere scartate.
+Alla fine della barra si trovano **Dimensione carattere**, **Colore testo** e
+**Sfondo testo**. I colori provengono da una selezione fissa di dodici
+tonalità; **Standard** ripristina il colore predefinito.
+
+## Annulla
+
+Se il cursore si trova nel testo, ⌘/Ctrl Z annulla l’ultima modifica.
+**Annulla** e **Ripeti** nella barra superiore scorrono passo passo tutte le
+modifiche effettuate dall’apertura del documento.
+
+## Se una modifica non è stata applicata
+
+Finché le modifiche sono aperte, accanto al titolo compare la dicitura **Testo modificato – non
+salvato**. Chi chiude la finestra viene chiesto se le modifiche
+devono essere salvate o scartate. Chi clicca semplicemente all’interno senza apportare alcuna
+modifica non ha nulla da salvare: il blocco rimane invariato.

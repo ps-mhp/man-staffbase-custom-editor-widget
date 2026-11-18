@@ -1,6 +1,6 @@
 {
   "title": "Redacteur",
-  "summary": "Opgemaakte hoofdtekst — koppen, lijsten, referenties — in een editor die laat zien hoe het eruitziet op de pagina.",
+  "summary": "Opgemaakte lopende tekst — koppen, lijsten, verwijzingen — in een editor die laat zien hoe het er op de pagina uitziet.",
   "icon": "📝",
   "pages": [
     {
@@ -20,7 +20,7 @@
     },
     {
       "id": "faq",
-      "title": "FAQ",
+      "title": "Veelgestelde vragen",
       "file": "faq.md"
     }
   ]

@@ -1,6 +1,6 @@
 {
-  "title": "Rédacteur en chef",
-  "summary": "Texte du corps formaté — titres, listes, références — dans un éditeur qui montre à quoi il ressemble sur la page.",
+  "title": "Rédacteur",
+  "summary": "Texte formaté — titres, listes, liens — dans un éditeur qui affiche le rendu tel qu'il apparaîtra sur la page.",
   "icon": "📝",
   "pages": [
     {
@@ -15,7 +15,7 @@
     },
     {
       "id": "settings",
-      "title": "Décors",
+      "title": "Paramètres",
       "file": "settings.md"
     },
     {

@@ -1,22 +1,31 @@
 # Settings
 
-The widget has exactly one setting — everything else happens in the editor. 
+The widget has exactly one setting—everything else is done in the editor.
 
 | Setting | Description |
 | --- | --- |
-| Content | The formatted text. Maintained via the **Edit content** button in the editor, not typed as text. |
+| Content | The formatted text. Edited in the editor, not typed as plain text; the **Edit Content** button reopens it. |
 
-## What the editor can do
+## What the Editor Can Do
 
-| Tool | Impact |
+The **Format** toolbar, from left to right:
+
+| Tool | Effect |
 | --- | --- |
-| Paragraph format | Continuous text, heading 1-3, quotation — applies to the paragraph on the writing mark. |
-| F / K / U / S / ''<!----> | Bold, italics, underlined, strikethrough, code — applies to the selected text. |
-| List / 1st list | List with dots or numbers, indentable with tab. |
-| Alignment | Left-aligned, centered, right-aligned, justified — applies to the paragraph on the writing mark. |
-| Reference / Detach Reference | Sets or removes a reference on the selected text. |
-| Dividing Line | Inserts a horizontal line. |
+| Paragraph Format | Body text, Heading 1–6, Quote, Code block — applies to the paragraph at the cursor. |
+| Bold, Italic, Underline, Strikethrough, Code | Applies to the selected text. |
+| … (Additional Formatting Options) | Highlighted, superscript, subscript, symbol; “Remove Formatting” removes all formatting. |
+| Bulleted List, Numbered List | List with bullets or numbers; indentable using the Tab key. |
+| Indent, Outdent | Indents or outdents paragraphs, headings, and quotes in stages. |
+| Alignment | Left-aligned, centered, right-aligned, justified — applies to the paragraph at the cursor. |
+| Insert Horizontal Line | Inserts a horizontal line. |
+| Link, Remove Link | Sets, changes, or removes a link on the selected text. |
+| Font Size | 12 to 72 pixels; 16 is the default for body text. |
+| Text Color, Text Background | One of twelve fixed colors, or “Standard.” |
 
-The look and colours come from the MAN design and deliberately cannot be
-set individually: a headline looks the same everywhere, regardless of the
-of who wrote it.
+Apply, Cancel, Undo, Redo, and Help are located at the top
+of the window, as with all MAN widgets.
+
+Fonts, headings, and spacing are based on the MAN design: a
+heading looks the same everywhere, regardless of who wrote
+it.

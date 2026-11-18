@@ -1,6 +1,6 @@
 {
   "title": "Editor",
-  "summary": "Texto principal formateado — encabezados, listas, referencias — en un editor que muestre cómo queda en la página.",
+  "summary": "Texto con formato —títulos, listas, enlaces— en un editor que muestra cómo quedará en la página.",
   "icon": "📝",
   "pages": [
     {
@@ -15,7 +15,7 @@
     },
     {
       "id": "settings",
-      "title": "Escenarios",
+      "title": "Configuración",
       "file": "settings.md"
     },
     {

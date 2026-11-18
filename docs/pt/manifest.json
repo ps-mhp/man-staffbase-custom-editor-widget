@@ -1,6 +1,6 @@
 {
   "title": "Editor",
-  "summary": "Texto do corpo formatado — títulos, listas, referências — em um editor que mostra como ele fica na página.",
+  "summary": "Texto formatado — títulos, listas, referências — num editor que mostra como ficará na página.",
   "icon": "📝",
   "pages": [
     {
@@ -15,12 +15,12 @@
     },
     {
       "id": "settings",
-      "title": "Configurações",
+      "title": "Definições",
       "file": "settings.md"
     },
     {
       "id": "faq",
-      "title": "FAQ",
+      "title": "Perguntas frequentes",
       "file": "faq.md"
     }
   ]

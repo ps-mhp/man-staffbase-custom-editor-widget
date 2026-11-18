@@ -1,34 +1,49 @@
-# FAQ
+# Veelgestelde vragen
 
-## Kan ik tekst invoegen vanuit Word? 
+## Kan ik tekst uit Word invoegen?
 
-Ja. Structuur en markups die de widget kent — koppen, 
-Opsommingslijsten, vetgedrukt, cursief — wordt gekopieerd. Alles wat verder valt (lettertypen, 
-Kleuren, maten uit Word) wordt weggelaten zodat de tekst het MAN-ontwerp volgt. 
+Ja. De structuur en opmaak die de widget herkent — koppen,
+opsommingen, vet, cursief — worden overgenomen. Al het overige (bijvoorbeeld lettertypen
+uit Word) wordt verwijderd, zodat de tekst het MAN-ontwerp volgt.
 
-## Waarom kan ik geen lettertype of kleur kiezen? 
+## Waarom kan ik geen lettertype en geen willekeurige kleur kiezen?
 
-Omdat beide gedefinieerd zijn in het MAN-ontwerp. Een tekst met een eigen lettertype
-valt uit de pagina zodra het ontwerp wordt aangepast. 
+Het lettertype is vastgelegd in het MAN-ontwerp: tekst die een eigen lettertype
+meebrengt, valt buiten de pagina zodra het ontwerp wordt aangepast.
+Grootte, tekstkleur en tekstopachtergrond kunnen worden ingesteld, maar kleuren zijn alleen mogelijk uit
+een vaste selectie van twaalf tinten.
 
-## Is er een lengtelimiet? 
+## Waarom is er geen voorbeeldweergave zoals bij andere widgets?
 
-Praktisch niet voor doorlopende tekst. De limiet geldt voor de volledige bijdrage, niet
-widget, en werd gemeten op ongeveer 16 miljoen tekens — dat is
-Enkele duizenden boekpagina's. 
+Omdat het blad in de editor al het voorbeeld is: het gebruikt dezelfde
+lettertypen, groottes en afstanden als de gepubliceerde pagina.
 
-## Mag ik afbeeldingen invoegen? 
+## Is er een lengtebeperking?
 
-Nee. Voor afbeeldingen gebruik je de afbeeldingswidget van Staffbase of de
-Tafel die foto's in cellen kan maken. 
+Voor lopende tekst praktisch niet. De limiet ligt bij het totale artikel, niet
+bij de widget, en is gemeten op ongeveer 16 miljoen tekens — dat zijn
+enkele duizenden boekpagina’s.
 
-## De tekst ziet er anders uit op de pagina dan in de editor. 
+## Kan ik afbeeldingen invoegen?
 
-Dit zou niet moeten gebeuren — editor en pagina gebruiken dezelfde set regels. 
-Als dat zo is, controleer dan eerst of de pagina al opnieuw is gepubliceerd. 
-en anders meld het met een screenshot van beide weergaven. 
+Nee. Voor afbeeldingen gebruikt u de afbeeldingswidget van Staffbase of de
+tabel, waarin afbeeldingen in cellen kunnen worden opgenomen.
 
-## Ik heb per ongeluk alles verwijderd. 
+## De tekst ziet er op de pagina anders uit dan in de editor.
 
-Zolang het editorvenster open is: Ctrl+Z. Is al opgeslagen en de
-Dialoog gesloten, alleen de versiegeschiedenis van de pagina in Staffbase helpt.
+Dat zou niet mogen gebeuren — de editor en de pagina hanteren dezelfde regels.
+Mocht dit toch het geval zijn, controleer dan eerst of de pagina al opnieuw is gepubliceerd,
+en meld het anders met een screenshot van beide weergaven.
+
+## Ik heb per ongeluk alles gewist.
+
+Zolang het editorvenster open is: ⌘/Ctrl Z in de tekst of **Ongedaan maken** in de
+koptekst. Nog niet opgeslagen? Dan gooit **Annuleren** alles weg sinds de
+laatste opslag. Als het al is opgeslagen en het dialoogvenster is gesloten, helpt
+alleen de versiegeschiedenis van de pagina in Staffbase.
+
+## Verandert het simpelweg openen mijn tekst?
+
+Nee. Wie de editor opent en deze zonder wijzigingen sluit of opslaat,
+schrijft niets: **Opslaan** blijft uitgeschakeld zolang er niets is gewijzigd, en
+het blok op de pagina blijft zoals het was.

@@ -1,34 +1,49 @@
-# FAQ
+# Domande frequenti
 
-## Posso inserire testo da Word? 
+## Posso inserire del testo da Word?
 
-Sì. Struttura e markup che il widget conosce — intestazioni, 
-Elenchi elencati, grassetto, corsivo — verranno copiati. Tutto il resto (font, 
-Colori, dimensioni da Word) viene omesso in modo che il testo segua il design MAN. 
+Sì. La struttura e i formati riconosciuti dal widget — titoli,
+elenchi puntati, grassetto, corsivo — vengono mantenuti. Tutto il resto (ad esempio i caratteri
+di Word) viene eliminato, in modo che il testo rispetti il design MAN.
 
-## Perché non posso scegliere un font o un colore? 
+## Perché non posso scegliere un font o un colore a mia scelta?
 
-Perché entrambi sono definiti nel design MAN. Un testo che ha un proprio font
-cade dalla pagina non appena il disegno viene modificato. 
+Il font è predefinito nel design MAN: un testo che porta con sé un proprio font
+risulta fuori posto nella pagina non appena il design viene adattato.
+È possibile impostare la dimensione, il colore del testo e lo sfondo del testo, ma i colori possono essere scelti solo da
+una selezione fissa di dodici tonalità.
 
-## C'è un limite di lunghezza? 
+## Perché non c’è un’anteprima come negli altri widget?
 
-Praticamente non per testo continuo. Il limite è per l'intero contributo, non
-widget, e sono stati misurati in circa 16 milioni di caratteri — cioè
-diverse migliaia di pagine di libri. 
+Perché la pagina nell’editor è già l’anteprima: utilizza gli stessi
+caratteri, dimensioni e spaziature della pagina pubblicata.
 
-## Posso inserire immagini? 
+## C’è un limite di lunghezza?
 
-No. Per le immagini, usa il widget immagine di Staffbase o il
-Tavolo che può scattare foto nelle celle. 
+Per il testo continuo, praticamente no. Il limite riguarda l’intero articolo, non
+il widget, ed è stato misurato a circa 16 milioni di caratteri — ovvero
+alcune migliaia di pagine di libro.
 
-## Il testo appare diverso sulla pagina rispetto all'editor. 
+## Posso inserire immagini?
 
-Questo non dovrebbe accadere — editor e pagina usano lo stesso insieme di regole. 
-Se lo fai, controlla prima se la pagina è già stata ripubblicata. 
-e altrimenti segnalarlo con uno screenshot di entrambe le viste. 
+No. Per le immagini, utilizzi il widget Immagini di Staffbase o la
+tabella, che può contenere immagini nelle celle.
 
-## Ho cancellato tutto per sbaglio. 
+## Il testo appare diverso sulla pagina rispetto all’editor.
 
-Finché la finestra dell'editor è aperta: Ctrl+Z. È già salvata e il
-Dialogo chiuso, solo la cronologia delle versioni della pagina in Staffbase aiuta.
+Questo non dovrebbe accadere — l’editor e la pagina utilizzano le stesse regole di formattazione.
+Se dovesse comunque verificarsi, controlla innanzitutto se la pagina è già stata ripubblicata,
+e in caso contrario segnalalo allegando uno screenshot di entrambe le visualizzazioni.
+
+## Ho cancellato tutto per sbaglio.
+
+Finché la finestra dell’editor è aperta: ⌘/Ctrl Z nel testo o **Annulla** nella
+barra degli strumenti. Non è ancora stato salvato? Allora **Annulla** cancella tutto ciò che è stato fatto dall’
+ultimo salvataggio. Se è già stato salvato e la finestra di dialogo è chiusa, l’unica soluzione è
+consultare la cronologia delle versioni della pagina in Staffbase.
+
+## Il semplice fatto di aprire l’editor modifica il mio testo?
+
+No. Chi apre l’editor e lo chiude senza apportare modifiche o senza salvare,
+non scrive nulla: **Salva** rimane disattivato finché non viene modificato nulla e
+il blocco sulla pagina rimane com’era.

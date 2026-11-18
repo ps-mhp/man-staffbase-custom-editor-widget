@@ -1,22 +1,31 @@
-# Ambientazioni
+# Impostazioni
 
-Il widget ha esattamente un'impostazione — tutto il resto avviene nell'editor. 
+Il widget ha una sola impostazione: tutto il resto viene gestito nell’editor.
 
-| Ambientazione | Descrizione |
+| Impostazione | Descrizione |
 | --- | --- |
-| Contenuto | Il testo formattato. Mantenuto tramite il pulsante **Modifica contenuto** nell'editor, non digitato come testo. |
+| Contenuto | Il testo formattato. Viene gestito nell’editor, non digitato come testo; il pulsante **Modifica contenuto** lo riapre. |
 
-## Cosa può fare il montatore
+## Cosa può fare l’editor
 
-| Strumento | Impatto |
+La barra degli strumenti **Formato**, da sinistra a destra:
+
+| Strumento | Effetto |
 | --- | --- |
-| Formato del paragrafo | Testo continuo, intestazione 1-3, citazione — si applica al paragrafo sul segno di scrittura. |
-| F / K / U / S / ''<!----> | Grassetto, corsivo, sottolineato, cancellato, codice — si applica al testo selezionato. |
-| Lista / 1ª lista | Lista con punti o numeri, indentabile con tabula. |
-| Allineamento | Allineato a sinistra, centrato, allineato a destra, giustificato — si applica al paragrafo sul segno di scrittura. |
-| Riferimento / Riferimento Distaccato | Imposta o rimuove un riferimento sul testo selezionato. |
-| Linea di divisione | Inserisce una linea orizzontale. |
+| Formato paragrafo | Testo continuo, titolo 1–6, citazione, blocco di codice — si applica al paragrafo in corrispondenza del cursore. |
+| Grassetto, corsivo, sottolineato, barrato, codice | Si applica al testo selezionato. |
+| … (Altre formattazioni) | Evidenziato, apice, pedice, simbolo; «Rimuovi formattazione» elimina tutte le formattazioni. |
+| Elenco puntato, elenco numerato | Elenco con punti o numeri, indentabile con il tasto Tab. |
+| Rientro, uscita | Rientra o fa uscire gradualmente paragrafi, titoli e citazioni. |
+| Allineamento | Allineato a sinistra, centrato, allineato a destra, giustificato — si applica al paragrafo in corrispondenza del cursore. |
+| Inserisci linea di separazione | Inserisce una linea orizzontale. |
+| Collegamento, Rimuovi collegamento | Imposta, modifica o rimuove un collegamento sul testo selezionato. |
+| Dimensione carattere | Da 12 a 72 pixel; 16 è la dimensione predefinita per il testo corrente. |
+| Colore testo, sfondo testo | Uno dei dodici colori predefiniti, oppure «Standard». |
 
-L'aspetto e i colori derivano dal design MAN e deliberatamente non possono esserlo
-Impostato singolarmente: un titolo appare uguale ovunque, indipendentemente dal
-di chi l'ha scritta.
+Applica, Annulla, Ripeti e Aiuto si trovano nella parte superiore
+della finestra, come in tutti i widget MAN.
+
+I caratteri, i titoli e le spaziature derivano dal design MAN: un
+titolo ha lo stesso aspetto ovunque, indipendentemente da chi lo abbia scritto
+.

@@ -1,6 +1,6 @@
 {
-  "title": "Direttore",
-  "summary": "Testo del corpo formattato — intestazioni, elenchi, riferimenti — in un editor che mostra come appare sulla pagina.",
+  "title": "Redattore",
+  "summary": "Testo formattato — titoli, elenchi, collegamenti — in un editor che mostra come apparirà nella pagina.",
   "icon": "📝",
   "pages": [
     {

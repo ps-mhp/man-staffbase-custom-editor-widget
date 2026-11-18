@@ -1,34 +1,49 @@
-# FAQ
+# Perguntas Frequentes
 
-## Posso inserir texto do Word? 
+## Posso inserir texto do Word?
 
-Sim. Estrutura e marcações que o widget conhece — títulos, 
-Listas com tópicos, negrito, itálico — serão copiadas. Todo o resto (fontes, 
-Cores, tamanhos do Word) é omitido para que o texto siga o design MAN. 
+Sim. A estrutura e as marcações reconhecidas pelo widget — títulos,
+enumerados, negrito, itálico — são mantidas. Todo o resto (como os tipos de letra
+do Word, por exemplo) é removido, para que o texto siga o design da MAN.
 
-## Por que não posso escolher uma fonte ou cor? 
+## Por que razão não posso escolher um tipo de letra nem uma cor à minha escolha?
 
-Porque ambos são definidos no design MAN. Um texto que tem sua própria fonte
-cai da página assim que o design é ajustado. 
+O tipo de letra está definido no design da MAN: um texto que traga o seu próprio tipo de letra
+fica fora da página assim que o design for ajustado.
+É possível definir o tamanho, a cor do texto e o fundo do texto, mas as cores só podem ser escolhidas a partir de
+uma seleção fixa de doze tons.
 
-## Existe um limite de comprimento? 
+## Porque é que não há uma pré-visualização como noutros widgets?
 
-Praticamente não para texto contínuo. O limite é para toda a contribuição, não
-Widget, e foi medido em cerca de 16 milhões de caracteres — isso é
-Vários milhares de páginas de livro. 
+Porque a página no editor já é a pré-visualização: utiliza as mesmas
+tipos de letra, tamanhos e espaçamentos que a página publicada.
 
-## Posso inserir imagens? 
+## Existe um limite de comprimento?
 
-Não. Para imagens, use o widget de imagem do Staffbase ou o
-Mesa que pode tirar fotos para dentro das celas. 
+Para texto corrido, praticamente não. O limite aplica-se à publicação na sua totalidade, não
+ao widget, e foi medido em cerca de 16 milhões de caracteres — o que equivale a
+alguns milhares de páginas de livro.
 
-## O texto fica diferente na página do que no editor. 
+## Posso inserir imagens?
 
-Isso não deveria acontecer — editor e página usam o mesmo conjunto de regras. 
-Se sim, primeiro verifique se a página já foi republicada. 
-e caso contrário, reporte com uma captura de tela das duas visualizações. 
+Não. Para imagens, utilize o widget de imagens da Staffbase ou a
+tabela, que permite inserir imagens nas células.
 
-## Eu apaguei tudo sem querer. 
+## O texto tem um aspeto diferente na página do que no editor.
 
-Desde que a janela do editor esteja aberta: Ctrl+Z. Já está salvo e o
-Diálogo encerrado, só o histórico de versões da página na Staffbase ajuda.
+Isso não deveria acontecer — o editor e a página utilizam as mesmas regras.
+Caso aconteça, verifique primeiro se a página já foi republicada
+e, caso contrário, comunique o problema com uma captura de ecrã de ambas as visualizações.
+
+## Apaguei tudo por engano.
+
+Desde que a janela do editor esteja aberta: ⌘/Ctrl Z no texto ou **Reverter** na
+barra de ferramentas. Ainda não foi guardado? Então, **Cancelar** anula tudo desde a
+última vez que guardou. Se já estiver guardado e a caixa de diálogo fechada, a única solução
+é consultar o histórico de versões da página no Staffbase.
+
+## O simples facto de abrir o editor altera o meu texto?
+
+Não. Quem abrir o editor e o fechar sem alterações ou sem guardar,
+não altera nada: a opção **Guardar** não é ativada enquanto nada for alterado, e
+o bloco na página permanece tal como estava.

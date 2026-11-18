@@ -1,6 +1,6 @@
 {
   "title": "Redaktor",
-  "summary": "Sformatowany tekst treści — nagłówki, listy, odniesienia — w edytorze, który pokazuje, jak wygląda na stronie.",
+  "summary": "Sformatowany tekst ciągły — nagłówki, listy, odnośniki — w edytorze, który pokazuje, jak będzie to wyglądało na stronie.",
   "icon": "📝",
   "pages": [
     {
@@ -20,7 +20,7 @@
     },
     {
       "id": "faq",
-      "title": "FAQ",
+      "title": "Najczęściej zadawane pytania",
       "file": "faq.md"
     }
   ]

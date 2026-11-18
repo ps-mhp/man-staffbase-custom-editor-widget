@@ -1,29 +1,35 @@
 # Editor
 
-The widget places formatted body text on a page: headings, 
-Paragraphs, bulleted lists, quotations, references and dividing lines. It is intended for
-anything that needs more structure than a single line of text, but no
-own widget — explanatory sections, information texts, leaflets. 
+This widget places formatted continuous text on a page: headings,
+paragraphs, bulleted lists, quotes, references, and divider lines. It is intended for
+anything that requires more structure than a single line of text but does not
+warrant its own widget—explanatory sections, notes, and information sheets.
 
-Writing is done in an editor that looks exactly like the result: the
-Writing surface uses the same fonts, sizes and spacing as the
-published page. What is a heading in the editor is on the page
-a headline — there is no second formatting level that can be used to
-could deviate. 
+You write in an editor that looks exactly like the final result: the
+writing area uses the same fonts, sizes, and spacing as the
+published page. What is a heading in the editor is a heading on the page
+— there is no second level of formatting that could
+differ from it.
 
-The text is saved as a structure, not as finished HTML. That's why
-automatically makes a change to the MAN design without anyone having to change the contents of the
-. 
+The text is saved as a structure, not as finished HTML. That’s why
+it automatically adapts to changes in the MAN design without anyone having to
+touch the content.
 
-## What readers see
+## What Readers See
 
-The formatted text, embedded in the page. Without frames, without boxes, 
-without the heading of the widget itself — the widget only brings its content. 
+The formatted text, embedded in the page. No borders, no boxes,
+no widget header—the widget displays only its content.
 
 If nothing is entered, nothing appears on the page. An empty widget
-so it doesn't leave a gap. 
+therefore leaves no gap.
 
-## What you see in the CMS editor
+## What You See in the CMS Editor
 
-Instead of a text field, press the **Edit Content** button. It opens the editor
-as a large window above the dialog.
+The editor opens as a full-screen window over the dialog, in the same frame
+as all MAN widgets: at the top, the header with **Cancel**, **Apply**,
+Undo, Redo, and Help; below that, the **Format** toolbar and
+the text on a page-width sheet. There is no separate preview—
+the sheet already displays the text exactly as it appears on the page.
+
+In the dialog itself, you’ll then see the **Edit Content** button, which
+reopens the window.
